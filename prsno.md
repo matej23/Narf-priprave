@@ -1,14 +1,14 @@
 PRSNO NOGE
 
 PRSNO NOGE NA SUHEM
--udarci na suhem sede po fazah [pozornost: nastavek stopal, vidna faze, kolena dovolj ozko, po koncu faza drsenja]
--udarci leze na trebuhu - klopca/opora (modeliranje) [pozornost: nastavek stopal, simetricno, kolena dovolj ozko, po koncu faza drsenja] 
+-udarci na suhem sede po fazah [pozornost: nastavek stopal, vidne faze, kolena dovolj ozko, po koncu faza drsenja]
+-udarci leze na trebuhu - klopca/opora (modeliranje) [pozornost: nastavek stopal, simetricno, kolena dovolj ozko, drsenje po koncu faze drsenja] 
 	# 10 udarcev, vodeno (z modeliranjem) nato samostojno
 	# 15 udarcev, s stetjem po fazah
 
 PRSNO NOGE NA ROBU
 -udarci ob robu bazena na hrbtu (sede) [pozornost: nastavek stopal, kolena dovolj ozko]
--udarci ob robu bazena na trebuhu (leze) [pozornost: nastavek stopal, kolena ne vlecemo pregloboko pod telo, stopal v vodi]
+-udarci ob robu bazena na trebuhu (leze) [pozornost: nastavek stopal, kolena ne vlecemo pregloboko pod telo, stopala v vodi]
 	# 10 udarcev, vodeno (z modeliranjem) nato samostojno
 	# 15 udarcev, s stetjem po fazah
 
@@ -16,7 +16,6 @@ PRSNO NOGE EASY
 -udarci ob robu - opora (leze, roke na robu telo v legi za prsno) [pozornost: nastavek stopal - v vodi, dolgo drsenje z iztegnjenima nogama in s petama skupaj po zaključku udarca]
 	# 10 udarcev, vodeno (z modeliranjem) nato samostojno
 	# 15 udarcev, z modeliranjem po potrebi
-
 -udarci prsno s oporo v paru (drzijo se za obrocek) [pozornost: pozicija telesa, nastavek stopal, kolena ne vlecemo prevec pod telo]
 	# 2 dolzine - menjava v paru na polovici dolzine
 	# 2*2 dolzine - menjava na polovici dolzine v paru
@@ -57,7 +56,7 @@ PRSNO NOGE HARD
 	#4 dolzine
 	#3*2 dolzini
 	#6 dolzin
--prsno udarci priroceno na hrbtu- z dilco (objemejo) [pozornost: kolena v vodi, dovolj ozko, udarec mocen, boki visoko]
+-prsno udarci priroceno na hrbtu- z dilco (objamejo) [pozornost: kolena v vodi, dovolj ozko, udarec mocen, boki visoko]
 	#2 dolzini
 	#2*2 dolzini
 	#4 dolzine
@@ -78,13 +77,13 @@ PRSNO ROKE NA SUHEM
 	# 7 zaveslajev, vodeno (z modeliranjem) nato samostojno
 	# 5 - 7 zaveslajev na posameznika
 
-PRSNO ZAVESLAJ PLITVINA
+PRSNO ROKE PLITVINA
 -zaveslaj v plitvini stoje [pozornost: dolzina zaveslaja, hkrati zacneta glava in roke, pozicija glave pred zacetkom in po koncu zaveslaja med rokami - pogled v tla]
 -prsno zaveslaj leze ob robu bazena - sprednji del telesa v vodi [pozornost: dolzina zavesalaja, drsenje po koncu zaveslaja, pozicija glave ustrezna]
 	#skupinsko 5 - 7 ustreznim ponovitev na posameznika
 	#7 zaveslajev, vodeno
 
-PRSNO ZAVESLAJ PREMIKANJE
+PRSNO ROKE PREMIKANJE
 -prsno zaveslaj v plitvini s hojo [pozornost: koordinacija roke-glava, sirina zaveslaja]
 	#2 dolzini
 	#2*2 dolzini
@@ -97,7 +96,7 @@ PRSNO ZAVESLAJ PREMIKANJE
 	#5 ponovitev za vsakega - po potrebi z modeliranjem
 	#vsaj 3 ponovitve za vsakega
 
-PRSNO ZAVESLAJ VKLJUCEVANJE
+PRSNO ROKE VKLJUCEVANJE
 -kratek prsno zaveslaj + kravl noge [pozornost: kratek zaveslaj, hitro]
 	#2 dolzini
 	#2*2 dolzine
@@ -132,6 +131,7 @@ PRSNO OSNOVE
 
 PRSNO UTRJEVANJE
 -prsno z poudarjenim drsenjem [pozornost: 3s po udarcu, boki ne padajo, zacetek naslednjega zaveslaja koroke in glava prebijeta gladino - brez potapljanja]
+    #2*2 dolzini
 	#4 dolzine
 	#3*2 dolzine
 	#6 dolzin
