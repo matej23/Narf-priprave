@@ -11,6 +11,8 @@
     %kravl = vaje.kravl
     %hrbtno = vaje.hrbtno
     %prilagajanje = vaje.prilagajanje
+    %konec = vaje.konec_ure
+    %ogrevanje = vaje.ogrevanje
 
     <h2>PRSNO VAJE</h2>
 
@@ -72,5 +74,10 @@
         <li>{{exe}}</li>
         %end
     </ul>
+    %end
+    <hr>
+    <h3>KONEC URE</h3>
+    %for igra in konec:
+        <li>{{igra}}</li>
     %end
 </body>

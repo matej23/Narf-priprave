@@ -203,22 +203,18 @@ kravl_vaje = [
 hrbtno_vaje = []
 prilagajanje_vaje = []
 # ------------------------------------------------------------------------------------------------------------------
-igra = {
-    "-igra: lovljenje s crvom, igra z obrocki,..."
-}
-skoki_igra = {
-    "-konec ure: zdrs na glavo nato poljuben skok in igra - lovljenje s crvom"
-}
-velik_bazen_skoki = {
-    "-konec ure: skoki velik bazen - 2-3 na glavo, nato 2-3 poljubno"
-}
-ogrevanje = [
+igra = "-igra: lovljenje s crvom, igra z obrocki,..."
+skoki_igra = "-konec ure: zdrs na glavo nato poljuben skok in igra - lovljenje s crvom"
+velik_bazen_skoki = "-konec ure: skoki velik bazen - 2-3 na glavo, nato 2-3 poljubno"
+
+konec_ure = [
     igra, 
     skoki_igra, 
     velik_bazen_skoki
 ]
-# ------------------------------------------------------------------------------------------------------------------
 
+ogrevanje = []
+# ------------------------------------------------------------------------------------------------------------------
 
 def random_from_component(component, n):
     if n < 0 or n > len(list(component.keys())):
@@ -261,12 +257,13 @@ def component_exercises(component):
 
 
 class Priprava:
-    def __init__(self, prilagajanje=prilagajanje_vaje, prsno=prsno_vaje, kravl=kravl_vaje, hrbtno=hrbtno_vaje):
+    def __init__(self, prilagajanje=prilagajanje_vaje, prsno=prsno_vaje, kravl=kravl_vaje, hrbtno=hrbtno_vaje, konec_ure = konec_ure, ogrevanje = ogrevanje):
         self.prilagajanje = prilagajanje
         self.prsno = prsno
         self.kravl = kravl
         self.hrbtno = hrbtno
-        #self.konec_ure = konec_ure
+        self.konec_ure = konec_ure
+        self. ogrevanje = ogrevanje
 
 #    def v_slovar(self):
 #        return {
