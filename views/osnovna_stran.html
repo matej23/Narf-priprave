@@ -1,3 +1,76 @@
 <body>
-    <h2>POZDRAVLJENI!</h2>
+    <h1>NABOR VAJ</h1>
+    <hr>
+    <!--
+    %lst = ["prilagajanje", "prsno", "kravl", "hrbtno"]
+    %for disciplina in lst:
+    <li><a href="http://127.0.0.1:8080/{{disciplina}}/">{{disciplina}}</a></li>
+    %end
+    -->
+    %prsno = vaje.prsno
+    %kravl = vaje.kravl
+    %hrbtno = vaje.hrbtno
+    %prilagajanje = vaje.prilagajanje
+
+    <h2>PRSNO VAJE</h2>
+    
+    <h3>PRSNO NOGE:</h3>
+    %for component_name in prsno[0].keys():
+    <ul style="list-style-type:none;"><b>{{component_name}}</b>
+        %for exe in prsno[0][component_name]:
+        <li>{{exe}}</li>
+        %end
+    </ul>
+    %end
+    <h3>PRSNO ROKE:</h3>
+    %for component_name in prsno[1].keys():
+    <ul style="list-style-type:none;"><b>{{component_name}}</b>
+        %for exe in prsno[1][component_name]:
+        <li>{{exe}}</li>
+        %end
+    </ul>
+    %end
+    <h3>PRSNO SKUPAJ:</h3>
+    %for component_name in prsno[2].keys():
+    <ul style="list-style-type:none;"><b>{{component_name}}</b>
+        %for exe in prsno[2][component_name]:
+        <li>{{exe}}</li>
+        %end
+    </ul>
+    %end
+<hr>
+    <h2>KRAVL VAJE</h2>
+    
+    <h3>KRAVL NOGE:</h3>
+    %for component_name in kravl[0].keys():
+    <ul style="list-style-type:none;"><b>{{component_name}}</b>
+        %for exe in kravl[0][component_name]:
+        <li>{{exe}}</li>
+        %end
+    </ul>
+    %end
+    <h3>KRAVL DIHANJE:</h3>
+    %for component_name in kravl[1].keys():
+    <ul style="list-style-type:none;"><b>{{component_name}}</b>
+        %for exe in kravl[1][component_name]:
+        <li>{{exe}}</li>
+        %end
+    </ul>
+    %end
+    <h3>KRAVL ZAVESLAJ:</h3>
+    %for component_name in kravl[2].keys():
+    <ul style="list-style-type:none;"><b>{{component_name}}</b>
+        %for exe in kravl[2][component_name]:
+        <li>{{exe}}</li>
+        %end
+    </ul>
+    %end
+    <h3>KRAVL UTRJEVANJE CELA TEHNIKA:</h3>
+    %for component_name in kravl[3].keys():
+    <ul style="list-style-type:none;"><b>{{component_name}}</b>
+        %for exe in kravl[3][component_name]:
+        <li>{{exe}}</li>
+        %end
+    </ul>
+    %end
 </body>
