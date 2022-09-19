@@ -203,6 +203,21 @@ kravl_vaje = [
 hrbtno_vaje = []
 prilagajanje_vaje = []
 # ------------------------------------------------------------------------------------------------------------------
+igra = {
+    "-igra: lovljenje s crvom, igra z obrocki,..."
+}
+skoki_igra = {
+    "-konec ure: zdrs na glavo nato poljuben skok in igra - lovljenje s crvom"
+}
+velik_bazen_skoki = {
+    "-konec ure: skoki velik bazen - 2-3 na glavo, nato 2-3 poljubno"
+}
+ogrevanje = [
+    igra, 
+    skoki_igra, 
+    velik_bazen_skoki
+]
+# ------------------------------------------------------------------------------------------------------------------
 
 
 def random_from_component(component, n):
