@@ -6,6 +6,7 @@
 #        self.hrbtno = hrbtno
 #        self.konec_ure = konec_ure
 #        self. ogrevanje = ogrevanje
+import random
 
 class Tehnika:
     def __init__(self, odseki_tehnike, ime): 
@@ -358,36 +359,24 @@ kravl = Tehnika(
     "kravl"
 )
 # ------------------------------------------------------------------------------------------------------------------
-#hrbtno = Tehnika(
-#    [
-#
-#    ],
-#    "hrbtno"
-#)
+hrbtno = Tehnika(
+    [
+
+    ],
+    "hrbtno"
+)
 # ------------------------------------------------------------------------------------------------------------------
-#prilagajanje = Tehnika(
-#    [
-#
-#    ],
-#    "prilagajanje na vodo"
-#)
-# ------------------------------------------------------------------------------------------------------------------
-#igra = "-igra: lovljenje s crvom, igra z obrocki,..."
-#skoki_igra = "-konec ure: zdrs na glavo nato poljuben skok in igra - lovljenje s crvom"
-#velik_bazen_skoki = "-konec ure: skoki velik bazen - 2-3 na glavo, nato 2-3 poljubno"
-#
-#konec_ure = [
-#    igra, 
-#    skoki_igra, 
-#    velik_bazen_skoki
-#]
-#
-#ogrevanje = []
+prilagajanje = Tehnika(
+    [
+
+    ],
+    "prilagajanje na vodo"
+)
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
 class Uporabnik:
-    def __init__(self, uporabnisko_ime = "matej", zasifrirano_geslo = "n", baza_priprav = {}, seznam_tehnik = [prsno, kravl]):
+    def __init__(self, uporabnisko_ime = "matej", zasifrirano_geslo = "n", baza_priprav = {}, seznam_tehnik = [prilagajanje, prsno, kravl, hrbtno]):
         self.uporabnisko_ime = uporabnisko_ime
         self.zasifrirano_geslo = zasifrirano_geslo
         self.baza_priprav = baza_priprav
@@ -407,41 +396,26 @@ class Uporabnik:
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
-def random_from_component(component, n):
-    if n < 0 or n > len(list(component.keys())):
-        print("IZBOR NI MOZEN - ZAHTEVAL SI PREVELIKO STEVILO VAJ IZ NEKEGA SKLOPA")
-        return None
-    elif n == 0:
+def random_vaje_iz_nivoja_odseka_tehnike(nivo_odseka_tehnike, stevilo):
+    mozne_vaje = nivo_odseka_tehnike.vaje.copy()
+    if stevilo == 0: 
+        return []
+    elif stevilo < 0 or len(mozne_vaje) < stevilo:
+        print(f'za nivo odseka tehnike: {nivo_odseka_tehnike.ime} ste zahtevali neustrezno stevilo vaj!')
         return []
     else:
-        import random
-        lst = []
-        component_copy = component.copy()
-        for i in range(n):
-            el_all = {}
-            el = random.choice(list(component_copy.keys()))
-            el_repeat = random.choice(component_copy[el])
-            el_all[el] = el_repeat
-            del component_copy[el]
-            lst.append(el_all)
-            i = i + 1
-        return lst
+        vse_izbrane = []
+        for _ in range(stevilo):
+            izbrana = random.choice(mozne_vaje)
+            mozne_vaje.remove(izbrana)
 
+            vse_izbrane.append(
+                Vaja(
+                    izbrana.ime, 
+                    [random.choice(izbrana.pozornosti)],
+                    [random.choice(izbrana.dolzine)]
+                    )
+                )
+        return vse_izbrane
 
-def component_exercises(component):
-    return len(list(component.keys()))
-
-# def selection_to_random_component(lst, dict_of_components):
-#    if len(lst) != len(list(dict_of_components.keys())):
-#        return "IZBOR VAJ NI USTREZEN"
-#    else:
-#        selection = []
-#        for i in range(len(lst)):
-#            data = lst[i]
-#            lst_of_data = random_from_component(dict_of_components[i], data)
-#            for j in range(len(lst_of_data)):
-#                selection.append(lst_of_data[j])
-#        return selection
-#
-# def split_int_to_list(number):
-#    [int(i) for i in str(number)]
+#random_vaje_iz_nivoja_odseka_tehnike(kravl_utrjevanje, 2)
