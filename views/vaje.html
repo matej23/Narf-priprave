@@ -1,0 +1,27 @@
+<body>
+    <h1>NABOR VAJ</h1>
+    <hr>
+    <!--
+    %lst = ["prilagajanje", "prsno", "kravl", "hrbtno"]
+    %for disciplina in lst:
+    <li><a href="http://127.0.0.1:8080/{{disciplina}}/">{{disciplina}}</a></li>
+    %end
+    -->
+    
+    %for tehnika in tehnike:
+    <!--tecemo po vseh tehnikah-->
+        <h2 style="text-transform:uppercase">{{tehnika.ime}} vaje</h2>
+        %for odsek in tehnika.odseki_tehnike:  
+        <!--tecemo po vseh delih ene tehnike, -->
+            <h3 style="text-transform:uppercase">{{odsek.ime}}:</h3>
+            %for nivo in odsek.nivoji:
+                <ul style="list-style-type:none;"><b style="text-transform:uppercase">{{nivo.ime}}</b>
+                %for vaja in nivo.vaje:
+                    <li>{{vaja.ime}} → pozornost: {{vaja.pozornosti}}</li>
+                %end
+                </ul>
+            %end
+        %end
+        <hr>
+    %end
+</body>

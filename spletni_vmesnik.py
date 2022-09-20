@@ -66,9 +66,26 @@ def odjava():
 @bottle.get('/')
 def osnovni_zaslon():
     uporabnik = trenutni_uporabnik()
+    return bottle.template("osnovna_stran.html", x = 1, upo = uporabnik)
+
+@bottle.get("/baza_priprav/")
+def registracija_get():
+    return bottle.template("baza_priprav.html", napaka=None, x=1)
+
+@bottle.get("/vaje/")
+def registracija_get():
+    uporabnik = trenutni_uporabnik()
     ##PAZI!!
     uporabnik.seznam_tehnik = [model.prilagajanje, model.prsno, model.kravl, model.hrbtno]
     ##PAZI!!
-    return bottle.template("osnovna_stran.html", tehnike = uporabnik.seznam_tehnik)
+    return bottle.template("vaje.html", napaka=None, x=1, tehnike = uporabnik.seznam_tehnik)
 
+@bottle.get("/generator_priprav/")
+def registracija_get():
+    return bottle.template("generator.html", napaka=None, x=1)
+    
+@bottle.get("/iskanje_priprav/")
+def registracija_get():
+    return bottle.template("isci_pripravo.html", napaka=None, x=1)
+    
 bottle.run(debug=True, reloader=True)

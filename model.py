@@ -492,5 +492,3 @@ def random_vaje_iz_nivoja_odseka_tehnike(nivo_odseka_tehnike, stevilo):
                     )
                 )
         return vse_izbrane
-
-#random_vaje_iz_nivoja_odseka_tehnike(kravl_utrjevanje, 2)
