@@ -15,7 +15,11 @@
         <!--tecemo po vseh delih ene tehnike, -->
             <h3 style="text-transform:uppercase">{{odsek.ime}}:</h3>
             %for nivo in odsek.nivoji:
-            <li>{{nivo}}</li>
+                <ul style="list-style-type:none;"><b>{{nivo.ime}}</b>
+                %for vaja in nivo.vaje:
+                    <li>{{vaja.ime}}</li>
+                %end
+                </ul>
             %end
         %end
         <hr>

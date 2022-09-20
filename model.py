@@ -57,6 +57,10 @@ class Vaja:
 
     def pobrisi_dolzino(self, dolzina):
         self.dolzine.remove(dolzina)
+    
+    @staticmethod
+    def izpisi_vajo(self):
+        return f'{self.ime} [pozornosti:{self.pozornosti}] → {self.dolzine}'
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -308,8 +312,7 @@ kravl_zaveslaj_medium = NivoOdsekaTehnike(
     ],
     "kravl zaveslaj medium"
 )
-kravl_zaveslaj_hard = NivoOdsekaTehnike
-(
+kravl_zaveslaj_hard = NivoOdsekaTehnike(
     [
         Vaja("-kravl zaveslaj (ena roka na dolzino)", ["lega telesa stabilna, vdih na stran ne gor, udarci enakomerni in mocni"], ["2*2 dolzini", "4 dolzine", " 3*2 dolzine", "6 dolzin"]),
         Vaja("-kravl zaveslaj 3 - 3", ["dihanje na obe roki stabilno z ustreznim vdihom na stran, roka, ki ne dela zaveslaja je iztegnjena"], ["2*2 dolzini", "4 dolzine", " 3*2 dolzine", "6 dolzin"]),
@@ -355,19 +358,19 @@ kravl = Tehnika(
     "kravl"
 )
 # ------------------------------------------------------------------------------------------------------------------
-hrbtno = Tehnika(
-    [
-
-    ],
-    "hrbtno"
-)
+#hrbtno = Tehnika(
+#    [
+#
+#    ],
+#    "hrbtno"
+#)
 # ------------------------------------------------------------------------------------------------------------------
-prilagajanje = Tehnika(
-    [
-
-    ],
-    "prilagajanje na vodo"
-)
+#prilagajanje = Tehnika(
+#    [
+#
+#    ],
+#    "prilagajanje na vodo"
+#)
 # ------------------------------------------------------------------------------------------------------------------
 #igra = "-igra: lovljenje s crvom, igra z obrocki,..."
 #skoki_igra = "-konec ure: zdrs na glavo nato poljuben skok in igra - lovljenje s crvom"
