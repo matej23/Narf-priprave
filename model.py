@@ -7,6 +7,8 @@
 #        self.konec_ure = konec_ure
 #        self. ogrevanje = ogrevanje
 import random
+import hashlib
+import json
 
 class Tehnika:
     def __init__(self, odseki_tehnike, ime): 
@@ -376,10 +378,10 @@ prilagajanje = Tehnika(
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
 class Uporabnik:
-    def __init__(self, uporabnisko_ime = "matej", zasifrirano_geslo = "n", baza_priprav = {}, seznam_tehnik = [prilagajanje, prsno, kravl, hrbtno]):
+    def __init__(self, uporabnisko_ime, zasifrirano_geslo, seznam_tehnik = [prilagajanje, prsno, kravl, hrbtno]):
         self.uporabnisko_ime = uporabnisko_ime
         self.zasifrirano_geslo = zasifrirano_geslo
-        self.baza_priprav = baza_priprav
+        #self.baza_priprav = baza_priprav
         self.seznam_tehnik = seznam_tehnik
 
     def dodaj_pripravo(self, priprava):
@@ -393,6 +395,79 @@ class Uporabnik:
 
     def pobrisi_tehniko(self, tehnika):
         self.seznam_tehnik.remove(tehnika)
+
+    @staticmethod
+    def prijava(uporabnisko_ime, geslo_v_cistopisu):
+        uporabnik = Uporabnik.iz_datoteke(uporabnisko_ime)
+        if uporabnik is None:
+            raise ValueError("Uporabniško ime ne obstaja")
+        elif uporabnik.preveri_geslo(geslo_v_cistopisu):
+            return uporabnik
+        else:
+            raise ValueError("Geslo je napačno")
+
+    @staticmethod
+    def registracija(uporabnisko_ime, geslo_v_cistopisu):
+        if Uporabnik.iz_datoteke(uporabnisko_ime) is not None:
+            raise ValueError("Uporabniško ime že obstaja")
+        else:
+            zasifrirano_geslo = Uporabnik._zasifriraj_geslo(geslo_v_cistopisu)
+            uporabnik = Uporabnik(uporabnisko_ime, zasifrirano_geslo)
+            uporabnik.v_datoteko()
+            return uporabnik
+
+    def _zasifriraj_geslo(geslo_v_cistopisu, sol=None):
+        if sol is None:
+            sol = str(random.getrandbits(32))
+        posoljeno_geslo = sol + geslo_v_cistopisu
+        h = hashlib.blake2b()
+        h.update(posoljeno_geslo.encode(encoding="utf-8"))
+        return f"{sol}${h.hexdigest()}"
+
+    def preveri_geslo(self, geslo_v_cistopisu):
+        sol, _ = self.zasifrirano_geslo.split("$")
+        return self.zasifrirano_geslo == Uporabnik._zasifriraj_geslo(geslo_v_cistopisu, sol)
+
+    @staticmethod
+    def ime_uporabnikove_datoteke(uporabnisko_ime):
+        return f"{uporabnisko_ime}.json"
+
+    @staticmethod
+    def iz_datoteke(uporabnisko_ime):
+        try:
+            with open(Uporabnik.ime_uporabnikove_datoteke(uporabnisko_ime)) as datoteka:
+                slovar = json.load(datoteka)
+                return Uporabnik.iz_slovarja(slovar)
+        except FileNotFoundError:
+            return None
+
+    def v_datoteko(self):
+        with open(
+            Uporabnik.ime_uporabnikove_datoteke(self.uporabnisko_ime), "w"
+        ) as datoteka:
+            json.dump(self.v_slovar(), datoteka, ensure_ascii=False, indent=4)
+
+
+##NAPISI V SLOVAR IN IZ SLOVARJA ZA PODATKE
+    @staticmethod
+    def iz_slovarja(slovar):
+        uporabnisko_ime = slovar["uporabnisko_ime"]
+        zasifrirano_geslo = slovar["zasifrirano_geslo"]
+        seznam_tehnik = slovar["seznam_tehnik"]
+        uporabnik = Uporabnik(uporabnisko_ime, zasifrirano_geslo, seznam_tehnik)
+        #uporabnik.sport = {kljuc: Šport.iz_slovarja(
+        #    slovar["sport"][kljuc]) for kljuc in slovar["sport"]}
+        #uporabnik.seznam = Seznam.iz_slovarja(slovar["seznam"])
+        return uporabnik
+#
+    def v_slovar(self):
+        return {
+            "uporabnisko_ime": self.uporabnisko_ime,
+            "zasifrirano_geslo": self.zasifrirano_geslo,
+            "seznam_tehnik" : []
+            #"sport": {kljuc: Šport.v_slovar(self.sport[kljuc]) for kljuc in self.sport},
+            #"seznam": Seznam.v_slovar(self.seznam)
+        }
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
