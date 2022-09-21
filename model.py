@@ -21,6 +21,19 @@ class Tehnika:
     def pobrisi_odsek_tehnike(self, odsek_tehnike):
         self.odseki_tehnike.remove(odsek_tehnike)
 
+    def tehnika_v_slovar(self):
+        return {
+            "ime_tehnike" : self.ime,
+            "odseki_tehnike" : [odsek_tehnike.odsek_tehnike_v_slovar() for odsek_tehnike in self.odseki_tehnike]
+        }
+
+    @staticmethod
+    def tehnika_iz_slovarja(slovar):
+        return Tehnika(
+            [OdsekTehnike.odsek_tehnike_iz_slovarja(odsek_tehnike) for odsek_tehnike in slovar["odseki_tehnike"]], 
+            slovar["ime_tehnike"]
+            )
+
 class OdsekTehnike:
     def __init__(self, nivoji, ime):
         self.nivoji = nivoji
@@ -31,6 +44,19 @@ class OdsekTehnike:
 
     def pobrisi_nivo(self, nivo):
         self.nivoji.remove(nivo)
+    
+    def odsek_tehnike_v_slovar(self):
+        return {
+            "ime_odseka_tehnike" : self.ime,
+            "nivo_odsekov_tehnike" : [nivo_odseka_tehnike.nivo_odseka_tehnike_v_slovar() for nivo_odseka_tehnike in self.nivoji]
+        }
+
+    @staticmethod
+    def odsek_tehnike_iz_slovarja(slovar):
+        return OdsekTehnike(
+            [NivoOdsekaTehnike.nivo_odseka_tehnike_iz_slovarja(nivo_odseka_tehnike) for nivo_odseka_tehnike in slovar["nivo_odsekov_tehnike"]], 
+            slovar["ime_odseka_tehnike"],
+            )
 
 class NivoOdsekaTehnike:
     def __init__(self, vaje, ime):
@@ -42,6 +68,19 @@ class NivoOdsekaTehnike:
 
     def pobrisi_vajo(self, vaja):
         self.vaje.remove(vaja)
+    
+    def nivo_odseka_tehnike_v_slovar(self):
+        return {
+            "ime_nivoja_odseka_tehnike" : self.ime,
+            "vaje" : [vaja.vaja_v_slovar() for vaja in self.vaje]
+        }
+
+    @staticmethod
+    def nivo_odseka_tehnike_iz_slovarja(slovar):
+        return NivoOdsekaTehnike(
+            [Vaja.vaja_iz_slovarja(vaja) for vaja in slovar["vaje"]],
+            slovar["ime_nivoja_odseka_tehnike"]
+        )
 
 class Vaja:
     def __init__(self, ime, pozornosti, dolzine):
@@ -60,6 +99,21 @@ class Vaja:
 
     def pobrisi_dolzino(self, dolzina):
         self.dolzine.remove(dolzina)
+    
+    def vaja_v_slovar(self): 
+        return {
+            "ime_vaje" : self.ime,
+            "pozornosti" : self.pozornosti,
+            "dolzine" : self.dolzine
+        }
+
+    @staticmethod
+    def vaja_iz_slovarja(slovar):
+        return Vaja(
+            slovar["ime_vaje"], 
+            slovar["pozornosti"],
+            slovar["dolzine"]
+            )
     
     @staticmethod
     def izpisi_vajo(self):
@@ -83,7 +137,7 @@ prsno_noge_na_robu = NivoOdsekaTehnike(
 )
 prsno_noge_easy = NivoOdsekaTehnike(
     [
-        Vaja("-prsno udarci ob robu - opora (leze, roke na robu telo v legi za prsno)", ["nastavek stopal - v vodi, dolgo drsenje z iztegnjenima nogama in s petama skupaj po zaključku udarca"], ["10 udarcev, vodeno (z modeliranjem) nato samostojno", "5 udarcev, z modeliranjem po potrebi"]),
+        Vaja("-prsno udarci ob robu - opora (leze, roke na robu telo v legi za prsno)", ["nastavek stopal - v vodi, dolgo drsenje z iztegnjenima nogama in s petama skupaj po zakljucku udarca"], ["10 udarcev, vodeno (z modeliranjem) nato samostojno", "5 udarcev, z modeliranjem po potrebi"]),
         Vaja("-prsno udarci prsno s oporo v paru (drzijo se za obrocek)", ["pozicija telesa, nastavek stopal, kolena ne vlecemo prevec pod telo"], ["2 dolzine - menjava v paru na polovici dolzine", "2*2 dolzine - menjava na polovici dolzine v paru"])
     ],
     "prsno noge easy"
@@ -453,7 +507,7 @@ class Uporabnik:
     def iz_slovarja(slovar):
         uporabnisko_ime = slovar["uporabnisko_ime"]
         zasifrirano_geslo = slovar["zasifrirano_geslo"]
-        seznam_tehnik = slovar["seznam_tehnik"]
+        seznam_tehnik = [Tehnika.tehnika_iz_slovarja(tehnika) for tehnika in slovar["seznam_tehnik"]]
         uporabnik = Uporabnik(uporabnisko_ime, zasifrirano_geslo, seznam_tehnik)
         #uporabnik.sport = {kljuc: Šport.iz_slovarja(
         #    slovar["sport"][kljuc]) for kljuc in slovar["sport"]}
@@ -464,7 +518,7 @@ class Uporabnik:
         return {
             "uporabnisko_ime": self.uporabnisko_ime,
             "zasifrirano_geslo": self.zasifrirano_geslo,
-            "seznam_tehnik" : []
+            "seznam_tehnik" : [tehnika.tehnika_v_slovar() for tehnika in self.seznam_tehnik]
             #"sport": {kljuc: Šport.v_slovar(self.sport[kljuc]) for kljuc in self.sport},
             #"seznam": Seznam.v_slovar(self.seznam)
         }

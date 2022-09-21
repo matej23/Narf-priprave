@@ -8,7 +8,6 @@ SKRIVNOST = "skrivnost"
 def shrani_stanje(uporabnik):
     uporabnik.v_datoteko()
 
-
 def trenutni_uporabnik():
     uporabnisko_ime = bottle.request.get_cookie(
         PISKOTEK_UPORABNISKO_IME, secret=SKRIVNOST)
@@ -66,9 +65,7 @@ def odjava():
 @bottle.get('/')
 def osnovni_zaslon():
     uporabnik = trenutni_uporabnik()
-    ##PAZI
-    uporabnik.seznam_tehnik = [model.prilagajanje, model.prsno, model.kravl, model.hrbtno]
-    ##PAZI
+    shrani_stanje(uporabnik)
     return bottle.template("osnovna_stran.html", x = 1, upo = uporabnik)
 
 @bottle.get("/baza_priprav/")
@@ -78,9 +75,7 @@ def registracija_get():
 @bottle.get("/vaje/")
 def registracija_get():
     uporabnik = trenutni_uporabnik()
-    ##PAZI!!
-    uporabnik.seznam_tehnik = [model.prilagajanje, model.prsno, model.kravl, model.hrbtno]
-    ##PAZI!!
+    shrani_stanje(uporabnik)
     return bottle.template("vaje.html", napaka=None, x=1, tehnike = uporabnik.seznam_tehnik)
 
 @bottle.get("/generator_priprav/")
@@ -94,9 +89,7 @@ def registracija_get():
 @bottle.get('/vaje/<tehnika>/')
 def stran_za_disciplino(tehnika):
     uporabnik = trenutni_uporabnik()
-    ##PAZI
-    uporabnik.seznam_tehnik = [model.prilagajanje, model.prsno, model.kravl, model.hrbtno]
-    ##PAZI
+    shrani_stanje(uporabnik)
     izbran = None
     for stil in uporabnik.seznam_tehnik:
         if stil.ime == tehnika:
