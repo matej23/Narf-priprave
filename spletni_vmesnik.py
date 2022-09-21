@@ -98,5 +98,100 @@ def stran_za_disciplino(tehnika):
             pass
     return bottle.template('vse_tehnike.html', izpis = izbran, x=2)
 
+@bottle.get("/<tehnika>/<odsek>/<nivo_odsek>/posodobi_vaja/")
+def registracija_get(tehnika, odsek, nivo_odsek):
+    uporabnik = trenutni_uporabnik()
+
+    vaja_ime = bottle.request.query.getunicode('vaja')
+    pozor = bottle.request.query.getunicode('pozornosti')
+    pozornosti = pozor.split(';')
+    dolz = bottle.request.query.getunicode('dolzina')
+    dolzine = dolz.split(';')
+
+    tehnika_class = uporabnik.class_tehnika(tehnika)
+    odsek_class = tehnika_class.class_odseka_tehnike(odsek)
+    nivo_odsek_class = odsek_class.class_nivo_odseka_tehnike(nivo_odsek)
+
+    #if nivo_odsek_class.preveri_ime_vaja(vaja_ime):
+    #    nova_vaja = model.Vaja(
+    #        f'-{vaja_ime}',
+    #        pozornosti, 
+    #        dolzine
+    #    )
+    #    nivo_odsek_class.dodaj_vajo(nova_vaja)
+#
+    #    shrani_stanje(uporabnik)
+    #    niz =  f'/vaje/{tehnika}/'
+#
+    #    return bottle.redirect(niz)
+    #else:
+    #    #ime ze obstaja
+    #    return bottle.redirect('/')
+    nova_vaja = model.Vaja(
+        f'-{vaja_ime}',
+        pozornosti, 
+        dolzine
+    )
+
+    nivo_odsek_class.dodaj_vajo(nova_vaja)
+    shrani_stanje(uporabnik)
+    niz =  f'/vaje/{tehnika}/'
+
+    return bottle.redirect(niz)
+
+@bottle.get("/<tehnika>/<odsek>/posodobi_nivo_odsek/")
+def registracija_get(tehnika, odsek):
+    uporabnik = trenutni_uporabnik()
+
+    nivo_odsek_ime = bottle.request.query.getunicode('nivo_odseka_tehnike')
+
+    tehnika_class = uporabnik.class_tehnika(tehnika)
+    odsek_class = tehnika_class.class_odseka_tehnike(odsek)
+    
+    #if odsek_class.preveri_ime_nivo(nivo_odsek_ime):
+    #    nov_nivo = model.NivoOdsekaTehnike([], nivo_odsek_ime)
+    #    odsek_class.dodaj_nivo(nov_nivo)
+#
+    #    shrani_stanje(uporabnik)
+    #    niz =  f'/vaje/{tehnika}/'
+#
+    #    return bottle.redirect(niz)
+    #else:
+    #    #ime ze obstaja
+    #    return bottle.redirect('/')
+
+    nov_nivo = model.NivoOdsekaTehnike([], nivo_odsek_ime)
+    odsek_class.dodaj_nivo(nov_nivo)
+
+    shrani_stanje(uporabnik)
+    niz =  f'/vaje/{tehnika}/'
+
+    return bottle.redirect(niz)
+
+@bottle.get("/<tehnika>/posodobi_odsek/")
+def registracija_get(tehnika):
+    uporabnik = trenutni_uporabnik()
+    odsek_ime = bottle.request.query.getunicode('odsek_tehnike')
+
+    tehnika_class = uporabnik.class_tehnika(tehnika)
+    #if tehnika_class.preveri_ime_odsek(odsek_ime):
+    #    nov_odsek = model.OdsekTehnike([], odsek_ime)
+    #    tehnika_class.dodaj_odsek_tehnike(nov_odsek)
+#
+    #    shrani_stanje(uporabnik)
+    #    niz =  f'/vaje/{tehnika}/'
+#
+    #    return bottle.redirect(niz)
+    #else:
+    #    #ime ze obstaja
+    #    return bottle.redirect('/')
+
+    nov_odsek = model.OdsekTehnike([], odsek_ime)
+    tehnika_class.dodaj_odsek_tehnike(nov_odsek)
+
+    shrani_stanje(uporabnik)
+    niz =  f'/vaje/{tehnika}/'
+    
+    return bottle.redirect(niz)
 
 bottle.run(debug=True, reloader=True)

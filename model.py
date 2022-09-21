@@ -15,11 +15,25 @@ class Tehnika:
         self.odseki_tehnike = odseki_tehnike
         self.ime = ime
 
+    def preveri_ime_odsek(self, odsek_ime):
+        imena_odseki = [odsek.ime for odsek in self.odseki_tehnike]
+        if odsek_ime in imena_odseki:
+            return False
+        else: 
+            return True
+
     def dodaj_odsek_tehnike(self, odsek_tehnike):
         self.odseki_tehnike.append(odsek_tehnike)
 
     def pobrisi_odsek_tehnike(self, odsek_tehnike):
         self.odseki_tehnike.remove(odsek_tehnike)
+
+    def class_odseka_tehnike(self, odsek_tehnike_ime):
+        iskan_odsek = None
+        for odsek in self.odseki_tehnike:
+            if odsek.ime == odsek_tehnike_ime:
+                iskan_odsek = odsek
+        return iskan_odsek
 
     def tehnika_v_slovar(self):
         return {
@@ -39,12 +53,26 @@ class OdsekTehnike:
         self.nivoji = nivoji
         self.ime = ime
 
+    def preveri_ime_nivo(self, nivo_ime):
+        imena_nivoji = [nivo.ime for nivo in self.nivoji]
+        if nivo_ime in imena_nivoji:
+            return False
+        else: 
+            return True
+
     def dodaj_nivo(self, nivo):
         self.nivoji.append(nivo)
 
     def pobrisi_nivo(self, nivo):
         self.nivoji.remove(nivo)
     
+    def class_nivo_odseka_tehnike(self, nivo_odsek_tehnike_ime):
+        iskan_nivo_odseka = None
+        for nivo in self.nivoji:
+            if nivo.ime == nivo_odsek_tehnike_ime:
+                iskan_nivo_odseka = nivo
+        return iskan_nivo_odseka
+
     def odsek_tehnike_v_slovar(self):
         return {
             "ime_odseka_tehnike" : self.ime,
@@ -63,12 +91,26 @@ class NivoOdsekaTehnike:
         self.vaje = vaje
         self.ime = ime
 
+    def preveri_ime_vaja(self, vaja_ime):
+        imena_vaje = [vaja.ime for vaja in self.vaje]
+        if vaja_ime in imena_vaje:
+            return False
+        else: 
+            return True
+
     def dodaj_vajo(self, vaja):
         self.vaje.append(vaja)
 
     def pobrisi_vajo(self, vaja):
         self.vaje.remove(vaja)
     
+    def class_vaja(self, vaja_ime):
+        iskana_vaja = None
+        for vaja in self.vaje:
+            if vaja.ime == vaja_ime:
+                iskana_vaja = vaja
+        return iskana_vaja
+
     def nivo_odseka_tehnike_v_slovar(self):
         return {
             "ime_nivoja_odseka_tehnike" : self.ime,
@@ -219,7 +261,7 @@ prsno_roke = OdsekTehnike(
         prsno_roke_premikanje,
         prsno_roke_vkljucevanje
     ],
-    "prsno_roke"
+    "prsno roke"
 )
 # ------------------------------
 prsno_osnove = NivoOdsekaTehnike(
@@ -445,10 +487,18 @@ class Uporabnik:
         self.baza_priprav.remove(priprava)
 
     def dodaj_tehniko(self, tehnika):
+        ##pazi ista imena
         self.seznam_tehnik.append(tehnika)
 
     def pobrisi_tehniko(self, tehnika):
         self.seznam_tehnik.remove(tehnika)
+
+    def class_tehnika(self, tehnika_ime):
+        iskana_tehnika = None
+        for tehnika in self.seznam_tehnik:
+            if tehnika.ime == tehnika_ime:
+                iskana_tehnika = tehnika
+        return iskana_tehnika
 
     @staticmethod
     def prijava(uporabnisko_ime, geslo_v_cistopisu):

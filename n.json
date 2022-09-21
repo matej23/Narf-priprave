@@ -1,6 +1,6 @@
 {
-    "uporabnisko_ime": "matej",
-    "zasifrirano_geslo": "4066788741$2d052bdc48c8e4dc5424b02a40947c8caf1f2d6750f038db43f3073e89fe790931f7f22aef55e1f5633ecb3dc42b9178893cdb0f3f07611af05b3d1ee9183cab",
+    "uporabnisko_ime": "n",
+    "zasifrirano_geslo": "2308397058$b8176b15f4ad221e03ca71c1b17c17229396ae47965e282a10d69dc83c6daf26ce6535c169148b2faa16c3a8ea020948e17141ff915751d1d7b59010e49548cd",
     "seznam_tehnik": [
         {
             "ime_tehnike": "prilagajanje na vodo",
@@ -225,7 +225,7 @@
                     ]
                 },
                 {
-                    "ime_odseka_tehnike": "prsno_roke",
+                    "ime_odseka_tehnike": "prsno roke",
                     "nivo_odsekov_tehnike": [
                         {
                             "ime_nivoja_odseka_tehnike": "prsno roke na suhem",

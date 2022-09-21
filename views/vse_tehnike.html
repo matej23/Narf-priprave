@@ -8,9 +8,38 @@
             %for vaja in nivo.vaje:
                 <li>{{vaja.ime}} → pozornost: {{vaja.pozornosti}}</li>
             %end
+            <br>
+            <form action="/{{izpis.ime}}/{{odsek.ime}}/{{nivo.ime}}/posodobi_vaja/">
+                →vaja: <input type="text" name="vaja" placeholder="..."required
+                minlength="4">&nbsp;
+                pozornosti: <input type="text" name="pozornosti" placeholder="...">&nbsp;
+                dolzine: <input type="text" name="dolzina" placeholder="...">&nbsp;
+                <!--<b>dolzina</b>: <input type="number" name="dolzina" value="1" min="1" required>&nbsp;-->
+                <input type="submit" value="DODAJ VAJO">
+            </form>
             </ul>
+            <br> 
         %end
+        <ul>
+            <form action='/{{izpis.ime}}/{{odsek.ime}}/posodobi_nivo_odsek/'>
+                <b style="text-transform:uppercase">nivo odseka tehnike</b>: <input type="text" name="nivo_odseka_tehnike" placeholder="..."required
+                minlength="3">&nbsp;
+                <input type="submit" value="DODAJ NIVO ODSEKA TEHNIKE">
+            </form>
+        </ul>
+        <br>
     %end
+    <hr>
+    <form action='/{{izpis.ime}}/posodobi_odsek/'>
+        <h3 style="text-transform:uppercase">odsek tehnike: <input type="text" name="odsek_tehnike" placeholder="..."required
+            minlength="3">&nbsp;
+        <input type="submit" value="DODAJ ODSEK TEHNIKE"></h3>
+    </form>
+
+
+
+
+
     <a href="http://127.0.0.1:8080">NAZAJ</a>
     <a href="http://127.0.0.1:8080/odjavi/se/">ODJAVA</a>
 </body>
