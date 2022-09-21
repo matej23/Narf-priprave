@@ -1,12 +1,16 @@
 <body>
     <h2 style="text-transform:uppercase">{{izpis.ime}} vaje</h2>
     %for odsek in izpis.odseki_tehnike:  
-    <!--tecemo po vseh delih ene tehnike, -->
         <h3 style="text-transform:uppercase">{{odsek.ime}}:</h3>
         %for nivo in odsek.nivoji:
             <ul style="list-style-type:none;"><b style="text-transform:uppercase">{{nivo.ime}}</b>
             %for vaja in nivo.vaje:
-                <li>{{vaja.ime}} → pozornost: {{vaja.pozornosti}}</li>
+                <li>
+                    <form action="/izbrisi_vaja/{{vaja.ime}}/{{nivo.ime}}/{{odsek.ime}}/{{izpis.ime}}/">
+                        {{vaja.ime}} → pozornost: {{vaja.pozornosti}}
+                        <input type="submit" value="izbriši">
+                    </form>
+                </li>
             %end
             <br>
             <form action="/{{izpis.ime}}/{{odsek.ime}}/{{nivo.ime}}/posodobi_vaja/">
@@ -14,7 +18,6 @@
                 minlength="4">&nbsp;
                 pozornosti: <input type="text" name="pozornosti" placeholder="...">&nbsp;
                 dolzine: <input type="text" name="dolzina" placeholder="...">&nbsp;
-                <!--<b>dolzina</b>: <input type="number" name="dolzina" value="1" min="1" required>&nbsp;-->
                 <input type="submit" value="DODAJ VAJO">
             </form>
             </ul>

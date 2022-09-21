@@ -166,7 +166,7 @@ class Vaja:
 prsno_noge_na_suhem = NivoOdsekaTehnike(
     [
         Vaja("-prsno udarci na suhem sede po fazah", ["nastavek stopal, vidne faze, kolena dovolj ozko, po koncu faza drsenja"], ["10 udarcev, vodeno (z modeliranjem) nato samostojno", "15 udarcev, s stetjem po fazah"]),
-        Vaja("-prsno udarci leze na trebuhu - klopca/opora (modeliranje)", ["nastavek stopal, simetricno, kolena dovolj ozko, drsenje po koncu faze drsenja"], ["10 udarcev, vodeno (z modeliranjem) nato samostojno", "15 udarcev, s stetjem po fazah"])
+        Vaja("-prsno udarci leze na trebuhu - klopca oz. opora (modeliranje)", ["nastavek stopal, simetricno, kolena dovolj ozko, drsenje po koncu faze drsenja"], ["10 udarcev, vodeno (z modeliranjem) nato samostojno", "15 udarcev, s stetjem po fazah"])
     ],
     "prsno noge na suhem"
 )
@@ -187,23 +187,23 @@ prsno_noge_easy = NivoOdsekaTehnike(
 prsno_noge_OP = NivoOdsekaTehnike(
     [
         Vaja("-odriv od stene v OP + 1 udarec prsno noge)", ["pozicija telesa - glava v vodi, boki visoko, udarec mocan z vidnimi fazami, sledi drsenje"], ["5 ponovitev za vsakega - po potrebi z modeliranjem", "vsaj 3 ponovitve za vsakega"]),
-        Vaja("-odriv od stene v OP + 2/3 udarci prsno noge", ["pozicija telesa - glava v vodi, udarec simeticen in mocen,  po vsakem udarcu sledi drsenje"], ["5 ponovitev za vsakega - po potrebi z modeliranjem", "vsaj 3 ponovitve za vsakega"]),
-        Vaja("-odriv od stene v OP + vdih + 1/2 udarca prsno noge", ["pozicija telesa - glava v vodi do hitrega vdiha, lega se po vdihu ne podre, boki visoko, udarec mocan z vidnimi fazami, ustrezen nastavek"], ["5 ponovitev za vsakega - po potrebi z modeliranjem", "vsaj 3 ponovitve za vsakega"])
+        Vaja("-odriv od stene v OP + 2-3 udarci prsno noge", ["pozicija telesa - glava v vodi, udarec simeticen in mocen,  po vsakem udarcu sledi drsenje"], ["5 ponovitev za vsakega - po potrebi z modeliranjem", "vsaj 3 ponovitve za vsakega"]),
+        Vaja("-odriv od stene v OP + vdih + 1-2 udarca prsno noge", ["pozicija telesa - glava v vodi do hitrega vdiha, lega se po vdihu ne podre, boki visoko, udarec mocan z vidnimi fazami, ustrezen nastavek"], ["5 ponovitev za vsakega - po potrebi z modeliranjem", "vsaj 3 ponovitve za vsakega"])
     ],
     "prsno noge v OP"
 )
 prsno_noge_medium = NivoOdsekaTehnike(
     [
-        Vaja("-delfincki + prsno noge - 1/2 udarca", ["mocen udarec z ustreznim nastavkom, pogled v tla"], ["2 dolzini", "4 dolzine", "6 dolzin"]),
+        Vaja("-delfincki + prsno noge - 1-2 udarca", ["mocen udarec z ustreznim nastavkom, pogled v tla"], ["2 dolzini", "4 dolzine", "6 dolzin"]),
         Vaja("-prsno noge z dilco - dihanje po potrebi", ["pozicija telesa, ustrezno dolga faza drsenja, glava v vodi"], ["2 dolzini", "4 dolzine", "6 dolzin"]),
-        Vaja("-prsno noge z dilco - dihanje na 2/3 udarce", ["med vdihom se pozicija telesa ne podre, ustrezen nastavek, kolena ne pregloboko pod trup"], ["2 dolzini", "4 dolzine", "6 dolzin"])
+        Vaja("-prsno noge z dilco - dihanje na 2-3 udarce", ["med vdihom se pozicija telesa ne podre, ustrezen nastavek, kolena ne pregloboko pod trup"], ["2 dolzini", "4 dolzine", "6 dolzin"])
     ],
     "prsno noge medium"
 )
 prsno_noge_hard = NivoOdsekaTehnike(
     [
         Vaja("-prsno noge z dilco - vdih na vsak udarec", ["hiter vdih, stabilno, udarec mocen z ustreznim nastavkom in fazo drsenja"], ["2*2 dolzini", "4 dolzine", "3*2 dolzini", "6 dolzin"]),
-        Vaja("-prsno noge v OP - vdih na 2/3 udarce", ["vdih ne porusi lege telesa - hiter, udarec mocen, kolena dovolj ozko, drsenje po vsakem udarcu"], ["2*2 dolzini", "4 dolzine", "3*2 dolzini", "6 dolzin"]),
+        Vaja("-prsno noge v OP - vdih na 2-3 udarce", ["vdih ne porusi lege telesa - hiter, udarec mocen, kolena dovolj ozko, drsenje po vsakem udarcu"], ["2*2 dolzini", "4 dolzine", "3*2 dolzini", "6 dolzin"]),
         Vaja("-prsno udarci priroceno na hrbtu - z dilco (objamejo)", ["kolena v vodi, dovolj ozko, udarec mocen, boki visoko"], ["2 dolzini", "2*2 dolzini", "4 dolzine"]),
         Vaja("-prsno udarci + bananice", ["boki visoko po, udarec z ustreznim nastavkom in fazo drsenja, kolena v vodi"], ["2 dolzini", "2*2 dolzini"]),
         Vaja("-prsno noge na hrbtu", ["boki visoko, kolena v vodi, dovolj ozko, mocen udarec"], ["2 dolzini", "2*2 dolzini", "4 dolzine", "3*2 dolzine"])
@@ -226,7 +226,7 @@ prsno_noge = OdsekTehnike(
 prsno_roke_na_suhem = NivoOdsekaTehnike(
     [
         Vaja( "-zaveslaj na suhem z modeliranjem", ["roke in glava hkrati, ustrezna dolzina zaveslaja, drsenje ob koncu, pospesevanje zaveslaja"], ["7 zaveslajev, vodeno (z modeliranjem) nato samostojno", "5 - 7 zaveslajev na posameznika"]),
-        Vaja("-zaveslaj na suhem leze (na klopci/opori)", ["zajemanje vode z dlanmi, roke in glava hkrati, ustrezna dolzina zaveslaja"], ["7 zaveslajev, vodeno (z modeliranjem) nato samostojno", "5 - 7 zaveslajev na posameznika"])
+        Vaja("-zaveslaj na suhem leze (na klopci-opori)", ["zajemanje vode z dlanmi, roke in glava hkrati, ustrezna dolzina zaveslaja"], ["7 zaveslajev, vodeno (z modeliranjem) nato samostojno", "5 - 7 zaveslajev na posameznika"])
     ],
     "prsno roke na suhem"
 )
@@ -266,7 +266,7 @@ prsno_roke = OdsekTehnike(
 # ------------------------------
 prsno_osnove = NivoOdsekaTehnike(
     [
-        Vaja("-prsno 1+3", ["kratek zaveslaj, ustrezna koordinacija roke/glava - noge, udarec mocen, ucinkovit, faza drsenja"], ["2 dolzini", "2*2 dolzini", "4 dolzine", "3*2 dolzini"]),
+        Vaja("-prsno 1+3", ["kratek zaveslaj, ustrezna koordinacija roke-glava - noge, udarec mocen, ucinkovit, faza drsenja"], ["2 dolzini", "2*2 dolzini", "4 dolzine", "3*2 dolzini"]),
         Vaja("-prsno 1+2", ["udarca mocna, po vsakem faza drsenja, po zaveslaju lega se vedno stabilna"], ["2*2 dolzini", "4 dolzine", "3*2 dolzini"]),
         Vaja("-prsno 1+1", ["udarec z ustreznim nastavkom, mocan, zaveslaj kratek s pospesevanjem, pozicija telesa stabilna"], ["2*2 dolzini", "4 dolzine", "3*2 dolzini"])
     ],
@@ -275,7 +275,7 @@ prsno_osnove = NivoOdsekaTehnike(
 prsno_utrjevanje = NivoOdsekaTehnike(
     [
         Vaja("-prsno z poudarjenim drsenjem", ["3s po udarcu, boki ne padajo, zacetek naslednjega zaveslaja koroke in glava prebijeta gladino - brez potapljanja"], ["2*2 dolzini", "4 dolzine", "3*2 dolzini", "6 dolzin", "4*2 dolzini"]),
-        Vaja("-prsno cela tehnika", ["koordinacija roke/glava - noge"], ["2*2 dolzini", "4 dolzine", "3*2 dolzini", "6 dolzin", "4*2 dolzini"]),
+        Vaja("-prsno cela tehnika", ["koordinacija roke-glava - noge"], ["2*2 dolzini", "4 dolzine", "3*2 dolzini", "6 dolzin", "4*2 dolzini"]),
         Vaja("-prsno vaje : menjajo na dolzino: 1+3, 1+2, 1+1, prsno drsenje", ["mocni udarci z vidnim nastavkom"], ["4 dolzine", "8 dolzin"])
     ],
     "prsno utrjevanje"
@@ -309,7 +309,7 @@ kravl_noge_na_robu = NivoOdsekaTehnike(
     [
         Vaja("-kravl udarci ob robu bazena na hrbtu (sede)", ["enakomerno po frekvenci in amplitudi, spicke"], ["10s s stetjem", "10 - 15s"]),
         Vaja("-kravl udarci ob robu bazena na trebuhu (leze)", ["enakomerno, stopala ne prihajajo prevec iz vode, ni krcenja kolen"], ["10s s stetjem", "10 - 15s"]),
-        Vaja("-kravl udarci ob robu/opora (leze, roke na robu/na opori telo v legi za kravl)", ["lega telesa - glava v vodi, udarci enakomerni, spicke"], ["2*10s, vodeno nato samostojno", "15s, z modeliranjem po potrebi"])
+        Vaja("-kravl udarci ob robu-opora (leze, roke na robu-na opori telo v legi za kravl)", ["lega telesa - glava v vodi, udarci enakomerni, spicke"], ["2*10s, vodeno nato samostojno", "15s, z modeliranjem po potrebi"])
     ],
     "kravl noge na robu"
 )
@@ -317,25 +317,25 @@ kravl_noge_OP_gibljivo_easy = NivoOdsekaTehnike(
     [
         Vaja("-odriv od stene v OP + 3s kravl noge", ["pozicija telesa - glava v vodi, boki visoko, udarci enakomerni in tehnicno ustrezni"], ["5 ponovitev za vsakega - po potrebi z modeliranjem", "vsaj 3 ponovitve za vsakega"]),
         Vaja("-odriv od stene v OP + vsaj 3-5m kravl noge (max dolzina)", ["pozicija telesa - glava v vodi, roke iztegnjene v smeri gibanja, udarci vidni in enakomerni po amplitudi"], ["5 ponovitev za vsakega", "vsaj 3 ponovitve za vsakega, vedno dlje"]),
-        Vaja("-odriv od stene v OP + 1/2 vdiha + 3s kravl noge", ["pozicija telesa - glava v vodi do hitrega vdiha, lega se po vdihu ne podre, boki visoko, udarci mocni vednar z ustrezno amplitudo in frekvenco"], ["5 ponovitev za vsakega", "vsaj 3 ponovitve za vsakega"]),
-        Vaja("-vlecenje s crvom/desko + kravl noge", ["glava v vodi, udarci ustrezni - spicke, dovolj mocni, brez krcenja kolen"], ["2*1 dolzina", "2 dolzini"]),
+        Vaja("-odriv od stene v OP + 1-2 vdiha + 3s kravl noge", ["pozicija telesa - glava v vodi do hitrega vdiha, lega se po vdihu ne podre, boki visoko, udarci mocni vednar z ustrezno amplitudo in frekvenco"], ["5 ponovitev za vsakega", "vsaj 3 ponovitve za vsakega"]),
+        Vaja("-vlecenje s crvom ali desko + kravl noge", ["glava v vodi, udarci ustrezni - spicke, dovolj mocni, brez krcenja kolen"], ["2*1 dolzina", "2 dolzini"]),
         Vaja("-delfincki + kravl noge", ["pozicija glave - v vodi, roke iztgenjene, telo napeto, udarci ustrezni"], ["2 dolzini", "2*2 dolzini", "4 dolzine"])
     ],
-    "kravl noge v OP/gibljivo/easy"
+    "kravl noge v OP - gibljivo - easy"
 )
 kravl_noge_medium = NivoOdsekaTehnike(
     [
         Vaja("-kravl noge z dilco - glava v vodi, dihanje po potrebi", ["boki visoko, vdih hiter, ne podre lege telesa, udarci ucinkoviti in ustrezno izvedeni"], ["2*2 dolzini", "4 dolzine", "3*2 dolzine"]),
-        Vaja("-bananice + kravl/hrbtno noge", ["boki visoko, roke iztgenjene, udarci enakomerni in ucinkoviti - vsaj 2/3s"], ["2*2 dolzini", "4 dolzine", "3*2 dolzine"]),
-        Vaja("-kravl/hrbtno noge na hrbtu z dilco (objamejo)", ["boki visoko, udarci ucinkoviti, ni prekomernega stopanja na tla"], ["2*2 dolzini", "4 dolzine"])
+        Vaja("-bananice + kravl oz. hrbtno noge", ["boki visoko, roke iztgenjene, udarci enakomerni in ucinkoviti - vsaj 2/3s"], ["2*2 dolzini", "4 dolzine", "3*2 dolzine"]),
+        Vaja("-kravl oz. hrbtno noge na hrbtu z dilco (objamejo)", ["boki visoko, udarci ucinkoviti, ni prekomernega stopanja na tla"], ["2*2 dolzini", "4 dolzine"])
     ],
     "kravl noge medium"
 )
 kravl_noge_hard = NivoOdsekaTehnike(
     [
         Vaja("-kravl noge v OP - dihanje po potrebi", ["vdih hitre, ne podre lege telesa, udarci mocni in ucinkoviti"], ["2*2 dolzini", "4 dolzine", "3*2 dolzine"]),
-        Vaja("-noge kravl/hrbtno - obracajo na 3s iz trebuha na hrbet in nazaj", ["udarci mocni, ucinkoviti in enakomerni, med obratom pozicija ostane dokaj stabilna"], ["2*2 dolzini", "2 dolzini"]),
-        Vaja("-kravl noge na hrbtu/hrbtno noge (vzrocenje)", ["boki visoko, udarci enakomerni po amplitudi in frekvenci, telo napeto"], ["2*2 dolzini", "4 dolzine", "2 dolzini"])
+        Vaja("-noge kravl - hrbtno - obracajo na 3s iz trebuha na hrbet in nazaj", ["udarci mocni, ucinkoviti in enakomerni, med obratom pozicija ostane dokaj stabilna"], ["2*2 dolzini", "2 dolzini"]),
+        Vaja("-kravl noge na hrbtu oz. hrbtno noge (vzrocenje)", ["boki visoko, udarci enakomerni po amplitudi in frekvenci, telo napeto"], ["2*2 dolzini", "4 dolzine", "2 dolzini"])
     ],
     "kravl noge hard"
 )
@@ -353,7 +353,7 @@ kravl_noge = OdsekTehnike(
 # ------------------------------
 kravl_dihanje_na_suhem = NivoOdsekaTehnike(
     [
-        Vaja("-kravl superman/dihanje na stran na suhem", ["glava lezi na roki, ni dviga glave, le obrat, nato vracanje v zacetno pozicijo"], ["7-10 ponovitev za posameznika, vodeno nato samostojno", "5-10 ponovitev, po potrebi z modeliranjem"]),
+        Vaja("-kravl superman oz. dihanje na stran na suhem", ["glava lezi na roki, ni dviga glave, le obrat, nato vracanje v zacetno pozicijo"], ["7-10 ponovitev za posameznika, vodeno nato samostojno", "5-10 ponovitev, po potrebi z modeliranjem"]),
         Vaja("-kravl na boku, vdih na stran", ["roka iztegnjena nudi oporo, ni dvigovanja glave, le obrat"], ["7-10 ponovitev za posameznika, vodeno nato samostojno", "5-10 ponovitev, po potrebi z modeliranjem"])
     ],
     "kravl dihanje na suhem"
@@ -368,7 +368,7 @@ kravl_dihanje_easy = NivoOdsekaTehnike(
 kravl_dihanje_medium = NivoOdsekaTehnike(
     [
         Vaja("-kravl dihanje na stran z dilco - vzrocena roka na dilci za oporo", ["ni dvigovanja glave ob vdihu na stran, udarci mocni in enakomerni"], ["2*2 dolzini - menjava roke na 2 dolzini", "4 dolzine - menjava roke na vsako dolzino", "3*2 dolzine - menjava roke na vsako dolzino"]),
-        Vaja("-kravl dihanje z obratom na hrbet (prekomeren obrat v bolj stabilno lego)", ["pri vdihu/prehodu na hrbet in nazaj se lega bistveno ne podre, glava se od roke ne dviguje le obraca"], ["2*2 dolzini - menjava roke na 2 dolzini", "4 dolzine - menjava roke na vsako dolzino", "3*2 dolzine - menjava roke na vsako dolzino"])
+        Vaja("-kravl dihanje z obratom na hrbet (prekomeren obrat v bolj stabilno lego)", ["pri vdihuprehodu na hrbet in nazaj se lega bistveno ne podre, glava se od roke ne dviguje le obraca"], ["2*2 dolzini - menjava roke na 2 dolzini", "4 dolzine - menjava roke na vsako dolzino", "3*2 dolzine - menjava roke na vsako dolzino"])
     ],
     "kravl dihanje medium"
 )

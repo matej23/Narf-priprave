@@ -69,21 +69,21 @@ def osnovni_zaslon():
     return bottle.template("osnovna_stran.html", x = 1, upo = uporabnik)
 
 @bottle.get("/baza_priprav/")
-def registracija_get():
+def baza_priprav():
     return bottle.template("baza_priprav.html", napaka=None, x=1)
 
 @bottle.get("/vaje/")
-def registracija_get():
+def vaje():
     uporabnik = trenutni_uporabnik()
     shrani_stanje(uporabnik)
     return bottle.template("vaje.html", napaka=None, x=1, tehnike = uporabnik.seznam_tehnik)
 
 @bottle.get("/generator_priprav/")
-def registracija_get():
+def generator():
     return bottle.template("generator.html", napaka=None, x=1)
     
 @bottle.get("/iskanje_priprav/")
-def registracija_get():
+def iskanje():
     return bottle.template("isci_pripravo.html", napaka=None, x=1)
     
 @bottle.get('/vaje/<tehnika>/')
@@ -99,10 +99,11 @@ def stran_za_disciplino(tehnika):
     return bottle.template('vse_tehnike.html', izpis = izbran, x=2)
 
 @bottle.get("/<tehnika>/<odsek>/<nivo_odsek>/posodobi_vaja/")
-def registracija_get(tehnika, odsek, nivo_odsek):
+def posodobi_vaja(tehnika, odsek, nivo_odsek):
     uporabnik = trenutni_uporabnik()
 
-    vaja_ime = bottle.request.query.getunicode('vaja')
+    vaja_ime_ = bottle.request.query.getunicode('vaja')
+    vaja_ime = vaja_ime_.replace("/", " oz. ")
     pozor = bottle.request.query.getunicode('pozornosti')
     pozornosti = pozor.split(';')
     dolz = bottle.request.query.getunicode('dolzina')
@@ -140,7 +141,7 @@ def registracija_get(tehnika, odsek, nivo_odsek):
     return bottle.redirect(niz)
 
 @bottle.get("/<tehnika>/<odsek>/posodobi_nivo_odsek/")
-def registracija_get(tehnika, odsek):
+def posodobi_nivo_odsek(tehnika, odsek):
     uporabnik = trenutni_uporabnik()
 
     nivo_odsek_ime = bottle.request.query.getunicode('nivo_odseka_tehnike')
@@ -169,7 +170,7 @@ def registracija_get(tehnika, odsek):
     return bottle.redirect(niz)
 
 @bottle.get("/<tehnika>/posodobi_odsek/")
-def registracija_get(tehnika):
+def posodobi_odsek(tehnika):
     uporabnik = trenutni_uporabnik()
     odsek_ime = bottle.request.query.getunicode('odsek_tehnike')
 
@@ -192,6 +193,21 @@ def registracija_get(tehnika):
     shrani_stanje(uporabnik)
     niz =  f'/vaje/{tehnika}/'
     
+    return bottle.redirect(niz)
+
+@bottle.get("/izbrisi_vaja/<vaja_ime>/<vaja_nivo>/<vaja_odsek>/<vaja_tehnika>/")
+def izbrisi_vaja(vaja_ime, vaja_nivo, vaja_odsek, vaja_tehnika):
+    uporabnik = trenutni_uporabnik()
+
+    tehnika_class = uporabnik.class_tehnika(vaja_tehnika)
+    odsek_class = tehnika_class.class_odseka_tehnike(vaja_odsek)
+    nivo_odsek_class = odsek_class.class_nivo_odseka_tehnike(vaja_nivo)
+    vaja_izbris = nivo_odsek_class.class_vaja(vaja_ime)
+
+    nivo_odsek_class.pobrisi_vajo(vaja_izbris)
+
+    shrani_stanje(uporabnik)
+    niz = f'/vaje/{vaja_tehnika}/'
     return bottle.redirect(niz)
 
 bottle.run(debug=True, reloader=True)
