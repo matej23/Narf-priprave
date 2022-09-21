@@ -210,4 +210,32 @@ def izbrisi_vaja(vaja_ime, vaja_nivo, vaja_odsek, vaja_tehnika):
     niz = f'/vaje/{vaja_tehnika}/'
     return bottle.redirect(niz)
 
+@bottle.get("/izbrisi_nivo/<nivo>/<odsek>/<tehnika>/")
+def izbrisi_nivo(nivo, odsek, tehnika):
+    uporabnik = trenutni_uporabnik()
+
+    tehnika_class = uporabnik.class_tehnika(tehnika)
+    odsek_class = tehnika_class.class_odseka_tehnike(odsek)
+    nivo_odsek_izbris = odsek_class.class_nivo_odseka_tehnike(nivo)
+
+
+    odsek_class.pobrisi_nivo(nivo_odsek_izbris)
+
+    shrani_stanje(uporabnik)
+    niz = f'/vaje/{tehnika}/'
+    return bottle.redirect(niz)
+
+@bottle.get("/izbrisi_odsek/<odsek>/<tehnika>/")
+def izbrisi_odsek(odsek, tehnika):
+    uporabnik = trenutni_uporabnik()
+
+    tehnika_class = uporabnik.class_tehnika(tehnika)
+    odsek_class_izbris = tehnika_class.class_odseka_tehnike(odsek)
+
+    tehnika_class.pobrisi_odsek_tehnike(odsek_class_izbris)
+
+    shrani_stanje(uporabnik)
+    niz = f'/vaje/{tehnika}/'
+    return bottle.redirect(niz)
+
 bottle.run(debug=True, reloader=True)
