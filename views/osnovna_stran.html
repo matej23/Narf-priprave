@@ -1,8 +1,15 @@
 <body>
-    <ul>
-        <li><a href="http://127.0.0.1:8080/baza_priprav/">BAZA PRIPRAV</a></li>
-        <li><a href="http://127.0.0.1:8080/vaje/">VAJE</a></li>
-        <li><a href="http://127.0.0.1:8080/generator_priprav/">GENERIRAJ PRIPRAVO</a></li>
-        <li><a href="http://127.0.0.1:8080/iskanje_priprav/">IŠČI PRIPRAVO PO POUDARKU</a></li>
-    </ul>
+        <ul><a href="http://127.0.0.1:8080/baza_priprav/">BAZA PRIPRAV</a></ul>
+        <ul style="list-style-type:none;"><a href="http://127.0.0.1:8080/vaje/">VAJE</a>
+            %for tehnika in upo.seznam_tehnik:
+                <li><a href="http://127.0.0.1:8080/vaje/{{tehnika.ime}}/">{{tehnika.ime}} vaje</li>
+            %end
+        </ul>
+        <ul><a href="http://127.0.0.1:8080/generator_priprav/" >GENERIRAJ PRIPRAVO</a></ul>
+        <ul><a href="http://127.0.0.1:8080/iskanje_priprav/">IŠČI PRIPRAVO PO POUDARKU</a></ul>
 </body>
+<style>
+    li {
+        padding-left: 15px;
+    }
+</style>

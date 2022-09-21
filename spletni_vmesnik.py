@@ -66,6 +66,9 @@ def odjava():
 @bottle.get('/')
 def osnovni_zaslon():
     uporabnik = trenutni_uporabnik()
+    ##PAZI
+    uporabnik.seznam_tehnik = [model.prilagajanje, model.prsno, model.kravl, model.hrbtno]
+    ##PAZI
     return bottle.template("osnovna_stran.html", x = 1, upo = uporabnik)
 
 @bottle.get("/baza_priprav/")
@@ -88,4 +91,19 @@ def registracija_get():
 def registracija_get():
     return bottle.template("isci_pripravo.html", napaka=None, x=1)
     
+@bottle.get('/vaje/<tehnika>/')
+def stran_za_disciplino(tehnika):
+    uporabnik = trenutni_uporabnik()
+    ##PAZI
+    uporabnik.seznam_tehnik = [model.prilagajanje, model.prsno, model.kravl, model.hrbtno]
+    ##PAZI
+    izbran = None
+    for stil in uporabnik.seznam_tehnik:
+        if stil.ime == tehnika:
+            izbran = stil
+        else:
+            pass
+    return bottle.template('vse_tehnike.html', izpis = izbran, x=2)
+
+
 bottle.run(debug=True, reloader=True)
