@@ -1,12 +1,12 @@
 <body>
     <h2 style="text-transform:uppercase">{{izpis.ime}} vaje</h2>
-    <!--%if izpis.odseki_tehnike != []:-->
+    %if izpis.odseki_tehnike != []:
         %for odsek in izpis.odseki_tehnike:  
             <form action="/izbrisi_odsek/{{odsek.ime}}/{{izpis.ime}}/">
                 <h3 style="text-transform:uppercase">{{odsek.ime}}:
                 <input type="submit" value="IZBRIŠI"></h3>
             </form>
-            <!--%if odsek.nivoji != []:-->
+            %if odsek.nivoji != []:
                 %for nivo in odsek.nivoji:
                     <ul style="list-style-type:none;">
                     <form action="/izbrisi_nivo/{{nivo.ime}}/{{odsek.ime}}/{{izpis.ime}}/">
@@ -22,6 +22,9 @@
                                 </form>
                             </li>
                         %end
+                    %else: 
+                        pass 
+                    %end
                     <br>
                     <form action="/{{izpis.ime}}/{{odsek.ime}}/{{nivo.ime}}/posodobi_vaja/">
                         →vaja: <input type="text" name="vaja" placeholder="..."required
@@ -33,6 +36,9 @@
                     </ul>
                     <br> 
                 %end
+            %else:
+                pass 
+            %end
             <ul>
                 <form action='/{{izpis.ime}}/{{odsek.ime}}/posodobi_nivo_odsek/'>
                     <b style="text-transform:uppercase">nivo odseka tehnike</b>: <input type="text" name="nivo_odseka_tehnike" placeholder="..."required
@@ -42,6 +48,9 @@
             </ul>
             <br>
         %end
+    %else:
+        pass 
+    %end
     <hr>
     <form action='/{{izpis.ime}}/posodobi_odsek/'>
         <h3 style="text-transform:uppercase">odsek tehnike: <input type="text" name="odsek_tehnike" placeholder="..."required

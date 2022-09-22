@@ -936,5 +936,74 @@
             "odseki_tehnike": []
         }
     ],
-    "seznam_priprav": []
+    "seznam_priprav": [],
+    "generator": {
+        "prilagajanje na vodo": {},
+        "prsno": {
+            "prsno noge": [
+                false,
+                {
+                    "prsno noge na suhem": true,
+                    "prsno noge na robu": true,
+                    "prsno noge easy": true,
+                    "prsno noge v OP": true,
+                    "prsno noge medium": false,
+                    "prsno noge hard": false
+                }
+            ],
+            "prsno roke": [
+                false,
+                {
+                    "prsno roke na suhem": false,
+                    "prsno roke plitvina": false,
+                    "prsno roke premikanje": false,
+                    "prsno roke vkljucevanje": false
+                }
+            ],
+            "prsno koordinacija": [
+                false,
+                {
+                    "prsno osnove": false,
+                    "prsno utrjevanje": false
+                }
+            ]
+        },
+        "kravl": {
+            "kravl noge": [
+                false,
+                {
+                    "kravl noge na suhem": false,
+                    "kravl noge na robu": false,
+                    "kravl noge v OP - gibljivo - easy": false,
+                    "kravl noge medium": false,
+                    "kravl noge hard": false
+                }
+            ],
+            "kravl dihanje": [
+                false,
+                {
+                    "kravl dihanje na suhem": false,
+                    "kravl dihanje easy": false,
+                    "kravl dihanje medium": false,
+                    "kravl dihanje hard": false
+                }
+            ],
+            "kravl zaveslaj": [
+                true,
+                {
+                    "kravl zaveslaj na suhem": false,
+                    "kravl zavesalj easy": false,
+                    "kravl zaveslaj medium": false,
+                    "kravl zaveslaj hard": false
+                }
+            ],
+            "kravl utrjevanje cele tehnike": [
+                false,
+                {
+                    "kravl utrjevanje": false
+                }
+            ]
+        },
+        "hrbtno": {}
+    }
 }

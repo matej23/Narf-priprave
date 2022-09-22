@@ -1,5 +1,55 @@
 <body>
-    <h1>POZDRAVLJENI V GENERATORJU PRIPRAV</h1>
+    %for tehnika in upo.seznam_tehnik:
+    <!--tecemo po vseh tehnikah-->
+        <h2 style="text-transform:uppercase">{{tehnika.ime}} vaje</h2>
+        %for odsek in tehnika.odseki_tehnike:  
+        <!--tecemo po vseh delih ene tehnike, -->
+        <ul style="list-style-type:none;">
+            <h3 style="text-transform:uppercase">
+                <form action="/generator_pokazi/{{tehnika.ime}}/{{odsek.ime}}/">
+                        {{odsek.ime}}<input type="submit" value="pokaži več">
+                </form>
+                <form action="/generator_skrij/{{tehnika.ime}}/{{odsek.ime}}/">
+                    <input type="submit" value="skrij">
+                </form>
+            </h3>
+            %if gen[tehnika.ime][odsek.ime][0]:
+                %for nivo in odsek.nivoji:
+                <ul style="list-style-type:none;">
+                    <li>
+                        <form action="/generator_pokazi/{{tehnika.ime}}/{{odsek.ime}}/{{nivo.ime}}/">
+                            <b style="text-transform:uppercase">{{nivo.ime}}</b>
+                            <input type="submit" value="pokaži več">
+                        </form>
+                        <form action="/generator_skrij/{{tehnika.ime}}/{{odsek.ime}}/{{nivo.ime}}/">
+                            <input type="submit" value="skrij">
+                        </form>
+                        
+                        %if gen[tehnika.ime][odsek.ime][1][nivo.ime]:
+                        <ul style="list-style-type:none;">
+                            %for vaja in nivo.vaje:
+                                <li>{{vaja.ime}}</li>
+                            %end
+                        </ul>
+                        <br>
+                        %else:
+                            %pass
+                        %end
+                    </li>
+                </ul>
+                %end
+            %else:
+                %pass
+            %end
+        </ul>
+        %end
+        <hr>
+    %end
     <a href="http://127.0.0.1:8080">NAZAJ</a>
     <a href="http://127.0.0.1:8080/odjavi/se/">ODJAVA</a>
 </body>
+<style>
+    form {
+        display: inline;
+    }
+</style>

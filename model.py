@@ -506,8 +506,33 @@ class Priprava:
             "tehnika_priprava" : [tehnika_priprava.tehnika_v_slovar() for tehnika_priprava in self.seznam_tehnik]
         }
 
+def vse_skrito(seznam_tehnik):
+    tehnike_seznam = seznam_tehnik
+    aktivno = {
+        tehnika.ime : {
+            odsek.ime : (
+                False, {
+                    nivo.ime : False for nivo in odsek.nivoji 
+                }
+            )
+            for odsek in tehnika.odseki_tehnike
+        }
+        for tehnika in tehnike_seznam
+    }
+        
+    return aktivno
+
 class Uporabnik:
-    def __init__(self, uporabnisko_ime, zasifrirano_geslo, seznam_priprave= [], seznam_tehnik = [prilagajanje, prsno, kravl, hrbtno]):
+    def __init__(
+        self, 
+        uporabnisko_ime, 
+        zasifrirano_geslo, 
+        generator,
+        seznam_priprave= [], 
+        seznam_tehnik = [prilagajanje, prsno, kravl, hrbtno],
+        ):
+
+        self.generator = generator
         self.uporabnisko_ime = uporabnisko_ime
         self.zasifrirano_geslo = zasifrirano_geslo
         self.seznam_priprave = seznam_priprave
@@ -532,6 +557,22 @@ class Uporabnik:
             if tehnika.ime == tehnika_ime:
                 iskana_tehnika = tehnika
         return iskana_tehnika
+
+    def aktiviraj_cel_odsek(self, tehnika, odsek):
+        aktivno = self.generator
+        aktivno[tehnika][odsek][0] = True
+
+    def aktiviraj_cel_nivo(self, tehnika, odsek, nivo):
+        aktivno = self.generator
+        aktivno[tehnika][odsek][1][nivo] = True
+    
+    def skrij_cel_odsek(self, tehnika, odsek):
+        aktivno = self.generator
+        aktivno[tehnika][odsek][0] = False
+
+    def skrij_cel_nivo(self, tehnika, odsek, nivo):
+        aktivno = self.generator
+        aktivno[tehnika][odsek][1][nivo] = False
 
     @staticmethod
     def prijava(uporabnisko_ime, geslo_v_cistopisu):
@@ -592,7 +633,8 @@ class Uporabnik:
         zasifrirano_geslo = slovar["zasifrirano_geslo"]
         seznam_tehnik = [Tehnika.tehnika_iz_slovarja(tehnika) for tehnika in slovar["seznam_tehnik"]]
         seznam_priprave = [Priprava.priprava_iz_slovarja(priprava) for priprava in slovar["seznam_priprav"]]
-        uporabnik = Uporabnik(uporabnisko_ime, zasifrirano_geslo, seznam_priprave, seznam_tehnik)
+        generator = slovar["generator"]
+        uporabnik = Uporabnik(uporabnisko_ime, zasifrirano_geslo, generator, seznam_priprave, seznam_tehnik)
         #uporabnik.sport = {kljuc: Šport.iz_slovarja(
         #    slovar["sport"][kljuc]) for kljuc in slovar["sport"]}
         #uporabnik.seznam = Seznam.iz_slovarja(slovar["seznam"])
@@ -603,13 +645,17 @@ class Uporabnik:
             "uporabnisko_ime": self.uporabnisko_ime,
             "zasifrirano_geslo": self.zasifrirano_geslo,
             "seznam_tehnik" : [tehnika.tehnika_v_slovar() for tehnika in self.seznam_tehnik],
-            "seznam_priprav" : [priprava.priprava_v_slovar() for priprava in self.seznam_priprave]
+            "seznam_priprav" : [priprava.priprava_v_slovar() for priprava in self.seznam_priprave],
+            "generator" : self.generator
             #"sport": {kljuc: Šport.v_slovar(self.sport[kljuc]) for kljuc in self.sport},
             #"seznam": Seznam.v_slovar(self.seznam)
         }
+
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
+
+
 def random_vaje_iz_nivoja_odseka_tehnike(nivo_odseka_tehnike, stevilo):
     mozne_vaje = nivo_odseka_tehnike.vaje.copy()
     if stevilo == 0: 

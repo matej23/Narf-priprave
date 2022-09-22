@@ -65,6 +65,7 @@ def odjava():
 @bottle.get('/')
 def osnovni_zaslon():
     uporabnik = trenutni_uporabnik()
+    uporabnik.generator = model.vse_skrito(uporabnik.seznam_tehnik)
     shrani_stanje(uporabnik)
     return bottle.template("osnovna_stran.html", x = 1, upo = uporabnik)
 
@@ -80,7 +81,9 @@ def vaje():
 
 @bottle.get("/generator_priprav/")
 def generator():
-    return bottle.template("generator.html", napaka=None, x=1)
+    uporabnik = trenutni_uporabnik()
+
+    return bottle.template("generator.html", gen = uporabnik.generator, upo = uporabnik, napaka=None, x=1,)
     
 @bottle.get("/iskanje_priprav/")
 def iskanje():
@@ -271,5 +274,41 @@ def izbrisi_tehniko(tehnika):
     
     shrani_stanje(uporabnik)
     return bottle.redirect('/')
+
+@bottle.get("/generator_pokazi/<tehnika>/<odsek>/")
+def generator_pokazi_odsek(tehnika, odsek):
+    uporabnik = trenutni_uporabnik()
+    
+    uporabnik.aktiviraj_cel_odsek(tehnika, odsek)
+    shrani_stanje(uporabnik)
+
+    return bottle.redirect('/generator_priprav/')
+
+@bottle.get("/generator_pokazi/<tehnika>/<odsek>/<nivo>/")
+def generator_pokazi_nivo(tehnika, odsek, nivo):
+    uporabnik = trenutni_uporabnik()
+    
+    uporabnik.aktiviraj_cel_nivo(tehnika, odsek, nivo)
+    shrani_stanje(uporabnik)
+
+    return bottle.redirect('/generator_priprav/')
+
+@bottle.get("/generator_skrij/<tehnika>/<odsek>/")
+def generator_pokazi_odsek(tehnika, odsek):
+    uporabnik = trenutni_uporabnik()
+    
+    uporabnik.skrij_cel_odsek(tehnika, odsek)
+    shrani_stanje(uporabnik)
+
+    return bottle.redirect('/generator_priprav/')
+
+@bottle.get("/generator_skrij/<tehnika>/<odsek>/<nivo>/")
+def generator_pokazi_nivo(tehnika, odsek, nivo):
+    uporabnik = trenutni_uporabnik()
+    
+    uporabnik.skrij_cel_nivo(tehnika, odsek, nivo)
+    shrani_stanje(uporabnik)
+
+    return bottle.redirect('/generator_priprav/')
 
 bottle.run(debug=True, reloader=True)
