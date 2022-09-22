@@ -1,12 +1,12 @@
 <body>
     <h2 style="text-transform:uppercase">{{izpis.ime}} vaje</h2>
-    %if izpis.odseki_tehnike != []:
+    <!--%if izpis.odseki_tehnike != []:-->
         %for odsek in izpis.odseki_tehnike:  
             <form action="/izbrisi_odsek/{{odsek.ime}}/{{izpis.ime}}/">
                 <h3 style="text-transform:uppercase">{{odsek.ime}}:
                 <input type="submit" value="IZBRIŠI"></h3>
             </form>
-            %if odsek.nivoji != []:
+            <!--%if odsek.nivoji != []:-->
                 %for nivo in odsek.nivoji:
                     <ul style="list-style-type:none;">
                     <form action="/izbrisi_nivo/{{nivo.ime}}/{{odsek.ime}}/{{izpis.ime}}/">
@@ -50,7 +50,8 @@
     </form>
     <a href="http://127.0.0.1:8080">NAZAJ</a>
     <a href="http://127.0.0.1:8080/odjavi/se/">ODJAVA</a>
-        
+    
+    <!--
     <script>
         function openForm() {
           document.getElementById("myForm").style.display = "block";
@@ -60,6 +61,7 @@
           document.getElementById("myForm").style.display = "none";
         }
     </script>
+    -->
 </body>
 <style>
     .form-popup {

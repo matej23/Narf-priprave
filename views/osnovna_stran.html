@@ -2,8 +2,19 @@
         <ul><a href="http://127.0.0.1:8080/baza_priprav/">BAZA PRIPRAV</a></ul>
         <ul style="list-style-type:none;"><a href="http://127.0.0.1:8080/vaje/">VAJE</a>
             %for tehnika in upo.seznam_tehnik:
-                <li><a href="http://127.0.0.1:8080/vaje/{{tehnika.ime}}/">{{tehnika.ime}} vaje</li>
+            <form action="/izbrisi_tehniko/{{tehnika.ime}}/">
+                <li>
+                    <a href="http://127.0.0.1:8080/vaje/{{tehnika.ime}}/">{{tehnika.ime}} vaje</a>
+                    <input type="submit" value="izbriši">
+                </li>
+            </form>
             %end
+            <li>
+                <form action='/posodobi_tehnika/'>tehnika: 
+                    <input type="text" name="tehnika_ime" placeholder="..."required minlength="3">&nbsp;
+                    <input type="submit" value="DODAJ TEHNIKO">
+                </form>
+            </li>
         </ul>
         <ul><a href="http://127.0.0.1:8080/generator_priprav/" >GENERIRAJ PRIPRAVO</a></ul>
         <ul><a href="http://127.0.0.1:8080/iskanje_priprav/">IŠČI PRIPRAVO PO POUDARKU</a></ul>

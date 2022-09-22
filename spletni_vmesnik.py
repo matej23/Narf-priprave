@@ -195,6 +195,30 @@ def posodobi_odsek(tehnika):
     
     return bottle.redirect(niz)
 
+@bottle.get("/posodobi_tehnika/")
+def posodobi_tehnika():
+    uporabnik = trenutni_uporabnik()
+    tehnika_ime = bottle.request.query.getunicode('tehnika_ime')
+
+    nova_tehnika = model.Tehnika([], tehnika_ime)
+    uporabnik.dodaj_tehniko(nova_tehnika)
+    ##PODOBNO ZA TEHNIKO!
+    #if tehnika_class.preveri_ime_odsek(odsek_ime):
+    #    nov_odsek = model.OdsekTehnike([], odsek_ime)
+    #    tehnika_class.dodaj_odsek_tehnike(nov_odsek)
+#
+    #    shrani_stanje(uporabnik)
+    #    niz =  f'/vaje/{tehnika}/'
+#
+    #    return bottle.redirect(niz)
+    #else:
+    #    #ime ze obstaja
+    #    return bottle.redirect('/')
+
+    shrani_stanje(uporabnik)
+    
+    return bottle.redirect('/')
+
 @bottle.get("/izbrisi_vaja/<vaja_ime>/<vaja_nivo>/<vaja_odsek>/<vaja_tehnika>/")
 def izbrisi_vaja(vaja_ime, vaja_nivo, vaja_odsek, vaja_tehnika):
     uporabnik = trenutni_uporabnik()
@@ -237,5 +261,15 @@ def izbrisi_odsek(odsek, tehnika):
     shrani_stanje(uporabnik)
     niz = f'/vaje/{tehnika}/'
     return bottle.redirect(niz)
+
+@bottle.get("/izbrisi_tehniko/<tehnika>/")
+def izbrisi_tehniko(tehnika):
+    uporabnik = trenutni_uporabnik()
+
+    tehnika_class = uporabnik.class_tehnika(tehnika)
+    uporabnik.pobrisi_tehniko(tehnika_class)
+    
+    shrani_stanje(uporabnik)
+    return bottle.redirect('/')
 
 bottle.run(debug=True, reloader=True)
