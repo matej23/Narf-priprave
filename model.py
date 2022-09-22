@@ -1,11 +1,3 @@
-#class Priprava:
-#    def __init__(self, prilagajanje=prilagajanje_vaje, prsno=prsno_vaje, kravl=kravl_vaje, hrbtno=hrbtno_vaje, konec_ure = konec_ure, ogrevanje = ogrevanje):
-#        self.prilagajanje = prilagajanje
-#        self.prsno = prsno
-#        self.kravl = kravl
-#        self.hrbtno = hrbtno
-#        self.konec_ure = konec_ure
-#        self. ogrevanje = ogrevanje
 import random
 import hashlib
 import json
@@ -473,18 +465,59 @@ prilagajanje = Tehnika(
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
+class Priprava:
+    def __init__(self, poudarek, seznam_tehnik):
+        self.poudarek = poudarek
+        self.seznam_tehnik = seznam_tehnik
+    #
+    #def dodaj_tehniko(self, tehnika):
+    #    self.seznam_tehnik.append(tehnika)
+#
+    #def odstrani_tehniko(self, tehnika):
+    #    self.seznam_tehnik.remove(tehnika)
+    #
+    #def odstrani_odsek(self, tehnika, odsek_ime):
+    #    tehnika_class = self.seznam_tehnik.class_odseka_tehnike(tehnika)
+    #    tehnika_class.pobrisi_odsek_tehnike(odsek_ime)
+#
+    #def dodaj_odsek_tehnike(self, tehnika, odsek):
+    #    tehnika_class = self.seznam_tehnik.class_odseka_tehnike(tehnika)
+    #    tehnika_class.dodaj_odsek_tehnike(odsek)
+#
+    #def odstrani_nivo_odsek(self, tehnika, odsek, nivo_ime):
+    #    tehnika_class = self.seznam_tehnik.class_odseka_tehnike(tehnika)
+    #    odsek_class = tehnika_class.class_nivo_odseka_tehnike(odsek)
+    #    odsek_class.dodaj_nivo(nivo_ime)
+#
+#
+    def izpisi_pripravo(self):
+        return ""
+
+    @staticmethod
+    def priprava_iz_slovarja(slovar):
+        return Priprava(
+            slovar["poudarek"], 
+            [Tehnika.tehnika_iz_slovarja(tehnika) for tehnika in slovar["tehnika_priprava"]]
+            )
+
+    def priprava_v_slovar(self):
+        return {
+            "poudarek" : self.poudarek,
+            "tehnika_priprava" : [tehnika_priprava.tehnika_v_slovar() for tehnika_priprava in self.seznam_tehnik]
+        }
+
 class Uporabnik:
-    def __init__(self, uporabnisko_ime, zasifrirano_geslo, seznam_tehnik = [prilagajanje, prsno, kravl, hrbtno]):
+    def __init__(self, uporabnisko_ime, zasifrirano_geslo, seznam_priprave= [], seznam_tehnik = [prilagajanje, prsno, kravl, hrbtno]):
         self.uporabnisko_ime = uporabnisko_ime
         self.zasifrirano_geslo = zasifrirano_geslo
-        #self.baza_priprav = baza_priprav
+        self.seznam_priprave = seznam_priprave
         self.seznam_tehnik = seznam_tehnik
 
     def dodaj_pripravo(self, priprava):
         self.baza_priprav.append(priprava)
 
-    def pobrisi_pripravo(self, priprava):
-        self.baza_priprav.remove(priprava)
+    def pobrisi_pripravo(self, priprava_poudarek):
+        self.baza_priprav.remove(priprava_poudarek)
 
     def dodaj_tehniko(self, tehnika):
         ##pazi ista imena
@@ -558,7 +591,8 @@ class Uporabnik:
         uporabnisko_ime = slovar["uporabnisko_ime"]
         zasifrirano_geslo = slovar["zasifrirano_geslo"]
         seznam_tehnik = [Tehnika.tehnika_iz_slovarja(tehnika) for tehnika in slovar["seznam_tehnik"]]
-        uporabnik = Uporabnik(uporabnisko_ime, zasifrirano_geslo, seznam_tehnik)
+        seznam_priprave = [Priprava.priprava_iz_slovarja(priprava) for priprava in slovar["seznam_priprav"]]
+        uporabnik = Uporabnik(uporabnisko_ime, zasifrirano_geslo, seznam_priprave, seznam_tehnik)
         #uporabnik.sport = {kljuc: Šport.iz_slovarja(
         #    slovar["sport"][kljuc]) for kljuc in slovar["sport"]}
         #uporabnik.seznam = Seznam.iz_slovarja(slovar["seznam"])
@@ -568,7 +602,8 @@ class Uporabnik:
         return {
             "uporabnisko_ime": self.uporabnisko_ime,
             "zasifrirano_geslo": self.zasifrirano_geslo,
-            "seznam_tehnik" : [tehnika.tehnika_v_slovar() for tehnika in self.seznam_tehnik]
+            "seznam_tehnik" : [tehnika.tehnika_v_slovar() for tehnika in self.seznam_tehnik],
+            "seznam_priprav" : [priprava.priprava_v_slovar() for priprava in self.seznam_priprave]
             #"sport": {kljuc: Šport.v_slovar(self.sport[kljuc]) for kljuc in self.sport},
             #"seznam": Seznam.v_slovar(self.seznam)
         }
