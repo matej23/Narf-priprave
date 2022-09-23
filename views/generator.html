@@ -4,42 +4,47 @@
         <h2 style="text-transform:uppercase">{{tehnika.ime}} vaje</h2>
         %for odsek in tehnika.odseki_tehnike:  
         <!--tecemo po vseh delih ene tehnike, -->
-        <ul style="list-style-type:none;">
-            <h3 style="text-transform:uppercase">
-                <form action="/generator_pokazi/{{tehnika.ime}}/{{odsek.ime}}/">
-                        {{odsek.ime}}<input type="submit" value="pokaži več">
-                </form>
-                <form action="/generator_skrij/{{tehnika.ime}}/{{odsek.ime}}/">
-                    <input type="submit" value="skrij">
-                </form>
-            </h3>
             %if gen[tehnika.ime][odsek.ime][0]:
-                %for nivo in odsek.nivoji:
                 <ul style="list-style-type:none;">
-                    <li>
-                        <form action="/generator_pokazi/{{tehnika.ime}}/{{odsek.ime}}/{{nivo.ime}}/">
-                            <b style="text-transform:uppercase">{{nivo.ime}}</b>
-                            <input type="submit" value="pokaži več">
+                    <h3 style="text-transform:uppercase">
+                        <form action="/generator_skrij/{{tehnika.ime}}/{{odsek.ime}}/">
+                            {{odsek.ime}}<input type="submit" value="skrij">
                         </form>
-                        <form action="/generator_skrij/{{tehnika.ime}}/{{odsek.ime}}/{{nivo.ime}}/">
-                            <input type="submit" value="skrij">
-                        </form>
-                        
-                        %if gen[tehnika.ime][odsek.ime][1][nivo.ime]:
-                        <ul style="list-style-type:none;">
-                            %for vaja in nivo.vaje:
-                                <li>{{vaja.ime}}</li>
-                            %end
-                        </ul>
-                        <br>
+                    </h3>
+                    %for nivo in odsek.nivoji:
+                        % max_n = len(nivo.vaje)
+                        % nivo_gen = upo.generator[tehnika.ime][odsek.ime][1][nivo.ime][1]
+
+                        %if gen[tehnika.ime][odsek.ime][1][nivo.ime][0]:
+                                <li>
+                                    <form action="/generator_skrij/{{tehnika.ime}}/{{odsek.ime}}/{{nivo.ime}}/">
+                                        <b style="text-transform:uppercase">{{nivo.ime}}</b>
+                                        <input type="submit" value="skrij">
+                                    </form>
+                                        <input type="number" name= {{nivo.ime}} value={{nivo_gen}} min="0" max = {{max_n}} required>&nbsp;
+                                    <ul style="list-style-type:none;">
+                                        %for vaja in nivo.vaje:
+                                            <li>{{vaja.ime}}</li>
+                                        %end
+                                    </ul>
+                                    <br>
+                                </li>
                         %else:
-                            %pass
+                            <li>
+                                <form action="/generator_pokazi/{{tehnika.ime}}/{{odsek.ime}}/{{nivo.ime}}/">
+                                    <b style="text-transform:uppercase">{{nivo.ime}}</b>
+                                    <input type="submit" value="pokaži več">
+                                </form>
+                            </li>
                         %end
-                    </li>
+                    %end
                 </ul>
-                %end
             %else:
-                %pass
+                <h3 style="text-transform:uppercase">
+                <form action="/generator_pokazi/{{tehnika.ime}}/{{odsek.ime}}/">
+                    {{odsek.ime}}<input type="submit" value="pokaži več">
+                </form>
+                </h3>
             %end
         </ul>
         %end

@@ -512,8 +512,8 @@ def vse_skrito(seznam_tehnik):
         tehnika.ime : {
             odsek.ime : (
                 False, {
-                    nivo.ime : False for nivo in odsek.nivoji 
-                }
+                    nivo.ime : (False, 0) for nivo in odsek.nivoji 
+                },
             )
             for odsek in tehnika.odseki_tehnike
         }
@@ -527,7 +527,7 @@ class Uporabnik:
         self, 
         uporabnisko_ime, 
         zasifrirano_geslo, 
-        generator,
+        generator ={},
         seznam_priprave= [], 
         seznam_tehnik = [prilagajanje, prsno, kravl, hrbtno],
         ):
@@ -564,7 +564,7 @@ class Uporabnik:
 
     def aktiviraj_cel_nivo(self, tehnika, odsek, nivo):
         aktivno = self.generator
-        aktivno[tehnika][odsek][1][nivo] = True
+        aktivno[tehnika][odsek][1][nivo][0] = True
     
     def skrij_cel_odsek(self, tehnika, odsek):
         aktivno = self.generator
@@ -572,7 +572,11 @@ class Uporabnik:
 
     def skrij_cel_nivo(self, tehnika, odsek, nivo):
         aktivno = self.generator
-        aktivno[tehnika][odsek][1][nivo] = False
+        aktivno[tehnika][odsek][1][nivo][0] = False
+        
+    def posodobi_stevilo(self, tehnika, odsek, nivo, stevilo):
+        aktivno = self.generator
+        aktivno[tehnika][odsek][1][nivo][1] = stevilo
 
     @staticmethod
     def prijava(uporabnisko_ime, geslo_v_cistopisu):

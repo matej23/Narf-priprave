@@ -1,6 +1,6 @@
 {
     "uporabnisko_ime": "matej",
-    "zasifrirano_geslo": "7224841$9a3e388c52e0b531e5c0a77c7e6adce497044d16c90db47f229af5ea9a615b7bea94d5c28b3c0dd4b932691ec62787cd9b405c75843bb90d1ed439cb3e3a9088",
+    "zasifrirano_geslo": "1515038013$3d466d61c58ea74792ffb13abbda2045e6085939220326cdce6a5afe787f742a0c9a1aff49bc57d3f67a3c183184848425ac54efa7e4415c77072bd29650d8ee",
     "seznam_tehnik": [
         {
             "ime_tehnike": "prilagajanje na vodo",
@@ -943,28 +943,64 @@
             "prsno noge": [
                 false,
                 {
-                    "prsno noge na suhem": true,
-                    "prsno noge na robu": true,
-                    "prsno noge easy": true,
-                    "prsno noge v OP": true,
-                    "prsno noge medium": false,
-                    "prsno noge hard": false
+                    "prsno noge na suhem": [
+                        false,
+                        0
+                    ],
+                    "prsno noge na robu": [
+                        false,
+                        0
+                    ],
+                    "prsno noge easy": [
+                        false,
+                        0
+                    ],
+                    "prsno noge v OP": [
+                        true,
+                        0
+                    ],
+                    "prsno noge medium": [
+                        true,
+                        0
+                    ],
+                    "prsno noge hard": [
+                        false,
+                        0
+                    ]
                 }
             ],
             "prsno roke": [
                 false,
                 {
-                    "prsno roke na suhem": false,
-                    "prsno roke plitvina": false,
-                    "prsno roke premikanje": false,
-                    "prsno roke vkljucevanje": false
+                    "prsno roke na suhem": [
+                        false,
+                        0
+                    ],
+                    "prsno roke plitvina": [
+                        false,
+                        0
+                    ],
+                    "prsno roke premikanje": [
+                        false,
+                        0
+                    ],
+                    "prsno roke vkljucevanje": [
+                        false,
+                        0
+                    ]
                 }
             ],
             "prsno koordinacija": [
                 false,
                 {
-                    "prsno osnove": false,
-                    "prsno utrjevanje": false
+                    "prsno osnove": [
+                        false,
+                        0
+                    ],
+                    "prsno utrjevanje": [
+                        false,
+                        0
+                    ]
                 }
             ]
         },
@@ -972,35 +1008,77 @@
             "kravl noge": [
                 false,
                 {
-                    "kravl noge na suhem": false,
-                    "kravl noge na robu": false,
-                    "kravl noge v OP - gibljivo - easy": false,
-                    "kravl noge medium": false,
-                    "kravl noge hard": false
+                    "kravl noge na suhem": [
+                        false,
+                        0
+                    ],
+                    "kravl noge na robu": [
+                        false,
+                        0
+                    ],
+                    "kravl noge v OP - gibljivo - easy": [
+                        false,
+                        0
+                    ],
+                    "kravl noge medium": [
+                        false,
+                        0
+                    ],
+                    "kravl noge hard": [
+                        false,
+                        0
+                    ]
                 }
             ],
             "kravl dihanje": [
                 false,
                 {
-                    "kravl dihanje na suhem": false,
-                    "kravl dihanje easy": false,
-                    "kravl dihanje medium": false,
-                    "kravl dihanje hard": false
+                    "kravl dihanje na suhem": [
+                        false,
+                        0
+                    ],
+                    "kravl dihanje easy": [
+                        false,
+                        0
+                    ],
+                    "kravl dihanje medium": [
+                        false,
+                        0
+                    ],
+                    "kravl dihanje hard": [
+                        false,
+                        0
+                    ]
                 }
             ],
             "kravl zaveslaj": [
-                true,
+                false,
                 {
-                    "kravl zaveslaj na suhem": false,
-                    "kravl zavesalj easy": false,
-                    "kravl zaveslaj medium": false,
-                    "kravl zaveslaj hard": false
+                    "kravl zaveslaj na suhem": [
+                        false,
+                        0
+                    ],
+                    "kravl zavesalj easy": [
+                        false,
+                        0
+                    ],
+                    "kravl zaveslaj medium": [
+                        false,
+                        0
+                    ],
+                    "kravl zaveslaj hard": [
+                        false,
+                        0
+                    ]
                 }
             ],
             "kravl utrjevanje cele tehnike": [
                 false,
                 {
-                    "kravl utrjevanje": false
+                    "kravl utrjevanje": [
+                        false,
+                        0
+                    ]
                 }
             ]
         },
