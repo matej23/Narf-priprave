@@ -79,7 +79,7 @@
                 %max_n = len(nivo.vaje)
                 <ul style="list-style-type:none;">
                     <b style="text-transform:uppercase">{{nivo.ime}}</b>
-                    <input type="number" name= {{nivo.ime}} value= "0" min="0" max = {{max_n}} required>&nbsp;
+                    <input type="number" name={{nivo.ime}} value= "0" min="0" max = {{max_n}} required>&nbsp;
                 %for vaja in nivo.vaje:
                     <li>{{vaja.ime}}</li>
                 %end

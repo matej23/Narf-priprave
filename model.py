@@ -581,7 +581,7 @@ class Uporabnik:
     def vsi_nivoji(self):
         seznam_nivojev = []
         for tehnika in self.seznam_tehnik:
-            for odsek in tehnika.odsek:
+            for odsek in tehnika.odseki_tehnike:
                 for nivo in odsek.nivoji:
                     seznam_nivojev.append(nivo)
         return seznam_nivojev
@@ -671,9 +671,6 @@ class Uporabnik:
 def random_vaje_iz_nivoja_odseka_tehnike(nivo_odseka_tehnike, stevilo):
     mozne_vaje = nivo_odseka_tehnike.vaje.copy()
     if stevilo == 0: 
-        return []
-    elif stevilo < 0 or len(mozne_vaje) < stevilo:
-        print(f'za nivo odseka tehnike: {nivo_odseka_tehnike.ime} ste zahtevali neustrezno stevilo vaj!')
         return []
     else:
         vse_izbrane = []

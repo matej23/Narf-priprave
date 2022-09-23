@@ -319,7 +319,7 @@ def generiraj():
     seznam_nivojev = uporabnik.vsi_nivoji()
 
     for nivo in seznam_nivojev:
-        stevilo_nivo = bottle.request.query.getunicode(f'{nivo.ime}')
+        stevilo_nivo = int(bottle.request.query.getunicode(nivo.ime) or 0)
         seznam_vaj_iz_nivoja = model.random_vaje_iz_nivoja_odseka_tehnike(nivo, stevilo_nivo)
         
         for vaja in seznam_vaj_iz_nivoja:
