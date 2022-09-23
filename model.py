@@ -466,9 +466,9 @@ prilagajanje = Tehnika(
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
 class Priprava:
-    def __init__(self, poudarek, seznam_tehnik):
+    def __init__(self, poudarek, seznam_vaj):
         self.poudarek = poudarek
-        self.seznam_tehnik = seznam_tehnik
+        self.seznam_vaj = seznam_vaj
     #
     #def dodaj_tehniko(self, tehnika):
     #    self.seznam_tehnik.append(tehnika)
@@ -512,7 +512,7 @@ def vse_skrito(seznam_tehnik):
         tehnika.ime : {
             odsek.ime : (
                 False, {
-                    nivo.ime : (False, 0) for nivo in odsek.nivoji 
+                    nivo.ime : False for nivo in odsek.nivoji 
                 },
             )
             for odsek in tehnika.odseki_tehnike
@@ -564,7 +564,7 @@ class Uporabnik:
 
     def aktiviraj_cel_nivo(self, tehnika, odsek, nivo):
         aktivno = self.generator
-        aktivno[tehnika][odsek][1][nivo][0] = True
+        aktivno[tehnika][odsek][1][nivo] = True
     
     def skrij_cel_odsek(self, tehnika, odsek):
         aktivno = self.generator
@@ -572,11 +572,19 @@ class Uporabnik:
 
     def skrij_cel_nivo(self, tehnika, odsek, nivo):
         aktivno = self.generator
-        aktivno[tehnika][odsek][1][nivo][0] = False
+        aktivno[tehnika][odsek][1][nivo] = False
         
-    def posodobi_stevilo(self, tehnika, odsek, nivo, stevilo):
-        aktivno = self.generator
-        aktivno[tehnika][odsek][1][nivo][1] = stevilo
+    #def posodobi_stevilo(self, tehnika, odsek, nivo, stevilo):
+    #    aktivno = self.generator
+    #    aktivno[tehnika][odsek][1][nivo][1] = stevilo
+
+    def vsi_nivoji(self):
+        seznam_nivojev = []
+        for tehnika in self.seznam_tehnik:
+            for odsek in tehnika.odsek:
+                for nivo in odsek.nivoji:
+                    seznam_nivojev.append(nivo)
+        return seznam_nivojev
 
     @staticmethod
     def prijava(uporabnisko_ime, geslo_v_cistopisu):

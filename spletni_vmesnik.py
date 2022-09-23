@@ -311,4 +311,22 @@ def generator_pokazi_nivo(tehnika, odsek, nivo):
 
     return bottle.redirect('/generator_priprav/')
 
+@bottle.get("/generiraj_pripravo/")
+def generiraj():
+    uporabnik = trenutni_uporabnik()
+
+    seznam_vaj = []
+    seznam_nivojev = uporabnik.vsi_nivoji()
+
+    for nivo in seznam_nivojev:
+        stevilo_nivo = bottle.request.query.getunicode(f'{nivo.ime}')
+        seznam_vaj_iz_nivoja = model.random_vaje_iz_nivoja_odseka_tehnike(nivo, stevilo_nivo)
+        
+        for vaja in seznam_vaj_iz_nivoja:
+            seznam_vaj.append(vaja)
+    poudarek = bottle.request.query.getunicode('poudarek')
+
+    priprava = model.Priprava(poudarek, seznam_vaj)
+    bottle.template("priprava_prikaz.html", prip = priprava)
+
 bottle.run(debug=True, reloader=True)

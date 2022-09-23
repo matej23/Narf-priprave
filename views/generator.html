@@ -1,9 +1,9 @@
+<!--
 <body>
     %for tehnika in upo.seznam_tehnik:
-    <!--tecemo po vseh tehnikah-->
         <h2 style="text-transform:uppercase">{{tehnika.ime}} vaje</h2>
         %for odsek in tehnika.odseki_tehnike:  
-        <!--tecemo po vseh delih ene tehnike, -->
+
             %if gen[tehnika.ime][odsek.ime][0]:
                 <ul style="list-style-type:none;">
                     <h3 style="text-transform:uppercase">
@@ -53,8 +53,52 @@
     <a href="http://127.0.0.1:8080">NAZAJ</a>
     <a href="http://127.0.0.1:8080/odjavi/se/">ODJAVA</a>
 </body>
+
 <style>
     form {
         display: inline;
     }
+</style>
+-->
+<body>
+    <form action="/generiraj_pripravo/">
+    <!--
+    %lst = ["prilagajanje", "prsno", "kravl", "hrbtno"]
+    %for disciplina in lst:
+    <li><a href="http://127.0.0.1:8080/{{disciplina}}/">{{disciplina}}</a></li>
+    %end
+    -->
+    
+    %for tehnika in upo.seznam_tehnik:
+    <!--tecemo po vseh tehnikah-->
+        <h2 style="text-transform:uppercase">{{tehnika.ime}} vaje</h2>
+        %for odsek in tehnika.odseki_tehnike:  
+        <!--tecemo po vseh delih ene tehnike, -->
+            <h3 style="text-transform:uppercase">{{odsek.ime}}:</h3>
+            %for nivo in odsek.nivoji:
+                %max_n = len(nivo.vaje)
+                <ul style="list-style-type:none;">
+                    <b style="text-transform:uppercase">{{nivo.ime}}</b>
+                    <input type="number" name= {{nivo.ime}} value= "0" min="0" max = {{max_n}} required>&nbsp;
+                %for vaja in nivo.vaje:
+                    <li>{{vaja.ime}}</li>
+                %end
+                </ul>
+            %end
+        %end
+        <hr>
+    %end
+
+    poudarek priprave: 
+    <input type="text" name="poudarek" placeholder="..."required minlength="3">&nbsp;
+    <input type="submit" value="GENERIRAJ PRIPRAVO">
+    </form>
+    <a href="http://127.0.0.1:8080">NAZAJ</a>
+    <a href="http://127.0.0.1:8080/odjavi/se/">ODJAVA</a>
+</body>
+<style>
+    input[type=number],
+    select {
+    width: 4%;
+  }
 </style>
