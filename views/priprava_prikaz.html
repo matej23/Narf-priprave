@@ -1,5 +1,19 @@
 <body>
-    POZDRAVLJENI
+    <b>POUDAREK PRIPRAVE:</b> {{prip.poudarek}}
+    <br><br>
+    <b>VAJE:</b>
+    <ul style="list-style-type:none;">
+    %for vaja in prip.seznam_vaj:
+        %if vaja == "break":
+            <li></li>
+        %else:
+            <li>
+                {{vaja.ime}} → pozornost: [{{vaja.pozornosti[0]}}] → {{vaja.dolzine[0]}}
+            </li>
+        %end
+    %end
+    </ul>
+    <br>
     <a href="http://127.0.0.1:8080/generator_priprav/">NAZAJ</a>
     <a href="http://127.0.0.1:8080">NAZAJ DOMOV</a>
     <a href="http://127.0.0.1:8080/odjavi/se/">ODJAVA</a>

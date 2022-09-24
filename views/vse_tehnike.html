@@ -1,19 +1,18 @@
 <body>
     <h2 style="text-transform:uppercase">{{izpis.ime}} vaje</h2>
-    %if izpis.odseki_tehnike != []:
         %for odsek in izpis.odseki_tehnike:  
             <form action="/izbrisi_odsek/{{odsek.ime}}/{{izpis.ime}}/">
                 <h3 style="text-transform:uppercase">{{odsek.ime}}:
                 <input type="submit" value="IZBRIŠI"></h3>
             </form>
-            %if odsek.nivoji != []:
+
                 %for nivo in odsek.nivoji:
                     <ul style="list-style-type:none;">
                     <form action="/izbrisi_nivo/{{nivo.ime}}/{{odsek.ime}}/{{izpis.ime}}/">
                         <b style="text-transform:uppercase">{{nivo.ime}}</b>
                         <input type="submit" value="IZBRIŠI">
                     </form>
-                    %if nivo.vaje != []:
+
                         %for vaja in nivo.vaje:
                             <li>
                                 <form action="/izbrisi_vaja/{{vaja.ime}}/{{nivo.ime}}/{{odsek.ime}}/{{izpis.ime}}/">
@@ -22,9 +21,7 @@
                                 </form>
                             </li>
                         %end
-                    %else: 
-                        pass 
-                    %end
+
                     <br>
                     <form action="/{{izpis.ime}}/{{odsek.ime}}/{{nivo.ime}}/posodobi_vaja/">
                         →vaja: <input type="text" name="vaja" placeholder="..."required
@@ -36,9 +33,7 @@
                     </ul>
                     <br> 
                 %end
-            %else:
-                pass 
-            %end
+
             <ul>
                 <form action='/{{izpis.ime}}/{{odsek.ime}}/posodobi_nivo_odsek/'>
                     <b style="text-transform:uppercase">nivo odseka tehnike</b>: <input type="text" name="nivo_odseka_tehnike" placeholder="..."required
@@ -48,29 +43,16 @@
             </ul>
             <br>
         %end
-    %else:
-        pass 
-    %end
+        
     <hr>
     <form action='/{{izpis.ime}}/posodobi_odsek/'>
         <h3 style="text-transform:uppercase">odsek tehnike: <input type="text" name="odsek_tehnike" placeholder="..."required
             minlength="3">&nbsp;
         <input type="submit" value="DODAJ ODSEK TEHNIKE"></h3>
     </form>
+    <br>
     <a href="http://127.0.0.1:8080">NAZAJ</a>
     <a href="http://127.0.0.1:8080/odjavi/se/">ODJAVA</a>
-    
-    <!--
-    <script>
-        function openForm() {
-          document.getElementById("myForm").style.display = "block";
-        }
-        
-        function closeForm() {
-          document.getElementById("myForm").style.display = "none";
-        }
-    </script>
-    -->
 </body>
 <style>
     .form-popup {
@@ -84,16 +66,7 @@
         padding: 10px;
         background-color: white;
     }
-
+    form {
+    display: inline-block;
+    }
 </style>
-
-                <!--
-                <button class="open-button" onclick="openForm()">izbriši</button>
-
-                <div class="form-popup" id = "myForm">
-                        <form action="/izbrisi_nivo/{{nivo.ime}}/{{odsek.ime}}/{{izpis.ime}}/" class="form-container"></form>
-                        <div style="text-transform:uppercase">Ste prepričani da želite izbrisati nivo: <b>{{nivo.ime}}</b>?</div>
-                        <button type="submit" class="btn">IZBRIŠI</button><button type="button" class="btn cancel" onclick="closeForm()">ZAPRI</button>
-                    </form>
-                </div>
-                -->
