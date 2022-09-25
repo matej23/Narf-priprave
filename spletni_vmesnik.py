@@ -336,13 +336,41 @@ def generiraj():
 
     poudarek = bottle.request.query.getunicode('poudarek')
 
-    priprava = model.Priprava(poudarek, slovar_vaj)
-    return bottle.template("priprava_prikaz.html", prip = priprava)
+    priprava = model.Priprava(poudarek, slovar_vaj) 
+    return bottle.template("priprava_prikaz.html", prip = priprava, upo = uporabnik)
 
-#@bottle.get("/shrani_pripravo/<priprava>/")
-#def shrani_pripravo(priprava):
-#    uporabnik = trenutni_uporabnik()
-#    priprava_class = model.Priprava.priprava_iz_slovarja()
-#    return bottle.template("priprava_prikaz.html", prip = priprava_class, y = 1)
+@bottle.get("/shrani_pripravo/<poudarek>/<vaje>/")
+def shrani_pripravo(poudarek, vaje):
+    uporabnik = trenutni_uporabnik()
+
+    slovar_vaj = {}
+    for tehnika in uporabnik.seznam_tehnik:
+        slovar_vaj[tehnika.ime] = []
+
+    seznam_vaje = []
+    #seznam_vaje_string
+    #    rx = re.compile(r'<a href="/players(?P<url_name>/\w/\w+?\d\d).html">(?P<name>.{1,30})</a></td>.+?'
+    #                r'data-stat="pos" >(?P<position>.*?)</td>.+?'
+    #                r'data-stat="fg_pct" >(?P<fg_pct>.*?)</td>.+?'
+    #                r'data-stat="fg3_pct" >(?P<fg3_pct>.*?)</td>.+?'
+    #                r'data-stat="fg2_pct" >(?P<fg2_pct>.*?)</td>.+?'
+    #                r'data-stat="ft_pct" >(?P<ft_pct>.*?)</td>.+?'
+    #                r'data-stat="trb_per_g" >(?P<rebounds>.*?)</td>.+?'
+    #                r'data-stat="ast_per_g" >(?P<asists>.*?)</td>.+?'
+    #                r'data-stat="pts_per_g" >(?P<points>.*?)</td>',
+    #                re.DOTALL)
+#
+    #all_players = re.findall(rx, page_content)
+    #return all_players
+
+    for vaja in seznam_vaje:
+        for tehnika_z_vajo in uporabnik.tehnike_od_vaje(vaja):
+            slovar_vaj[tehnika_z_vajo].append(vaja)
+
+    priprava_class = model.Priprava(poudarek, slovar_vaj)
+    uporabnik.dodaj_pripravo(priprava_class)
+    shrani_stanje(uporabnik)
+
+    return bottle.template("priprava_prikaz.html", prip = priprava_class, upo = uporabnik)
 
 bottle.run(debug=True, reloader=True)

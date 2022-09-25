@@ -589,6 +589,12 @@ class Uporabnik:
         aktivno = self.generator
         aktivno[tehnika][odsek][1][nivo] = False
         
+    def dodaj_pripravo(self, priprava):
+        self.seznam_priprave.append(priprava)
+
+    def odstrani_pripravo(self, priprava):
+        self.seznam_priprave.remove(priprava)
+        
     #def posodobi_stevilo(self, tehnika, odsek, nivo, stevilo):
     #    aktivno = self.generator
     #    aktivno[tehnika][odsek][1][nivo][1] = stevilo
