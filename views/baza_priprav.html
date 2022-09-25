@@ -1,5 +1,20 @@
 <body>
-    <h1>POZDRAVLJENI V BAZI PRIPRAV</h1>
+    %if len(upo.seznam_priprave) == 0:
+        Trenutno nimate shranjene nobene priprave. <br>
+        Pripravo vnesite ali zgenerirajte, ter shranite da se bo pojavila v bazi.
+    %else:
+        <ul style="list-style-type:none;"> 
+            %for priprava in upo.seznam_priprave: 
+                <li>
+                    <form>
+                        POUDAREK PRIPRAVE: {{priprava.poudarek}}
+                        <input type="submit" value ="pokaži več">
+                    </form>
+                </li>
+            %end
+        </ul>
+    %end
+
     <a href="http://127.0.0.1:8080">NAZAJ</a>
     <a href="http://127.0.0.1:8080/odjavi/se/">ODJAVA</a>
 </body>

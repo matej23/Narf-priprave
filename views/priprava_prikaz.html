@@ -1,6 +1,5 @@
 <body>
     <b>POUDAREK PRIPRAVE:</b> {{prip.poudarek}}
-    {{len(upo.seznam_priprave)}}
     <br><br>
     <b>VAJE:</b>
     <ul style="list-style-type:none;">
@@ -21,21 +20,22 @@
     %vaje = ""
     %for tehnika in prip.slovar_vaj.keys():
         %for vaja in prip.slovar_vaj[tehnika]: 
-            %vaje = vaje +  f'&&&&{vaja.ime}' + f'&&&{vaja.pozornosti[0]}' f'&&{vaja.dolzine[0]}'
-        %end 
+            %vaje = vaje+f'ime:{vaja.ime}'+f'pozornost:{vaja.pozornosti[0]}'+f'dolzina:{vaja.dolzine[0]}&'
+        %end
     %end 
 
     </ul>
-    <form action="/shrani_pripravo/{{prip.poudarek}}/{{vaje}}/">
-        <input type="submit" id="shrani" onclick="myFunction()" value ="shrani pripravo">
-    </form>
-    <script>
-        function myFunction() {
-            document.getElementById("shrani").value ="priprava shranjena";
 
-        }
-    </script>
+    %if shranjena:
+        <input type="submit" id="shrani" value ="priprava shranjena">
+    %else:
+        <form action="/shrani_pripravo/{{prip.poudarek}}/{{vaje}}/">
+            <input type="submit" value ="shrani pripravo">
+        </form>
+    %end
+
     <br>
+
     <a href="http://127.0.0.1:8080/generator_priprav/">NAZAJ</a>
     <a href="http://127.0.0.1:8080">NAZAJ DOMOV</a>
     <a href="http://127.0.0.1:8080/odjavi/se/">ODJAVA</a>

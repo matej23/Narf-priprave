@@ -936,7 +936,45 @@
             "odseki_tehnike": []
         }
     ],
-    "seznam_priprav": [],
+    "seznam_priprav": [
+        {
+            "poudarek": "test baza",
+            "slovar_vaj": {
+                "prilagajanje na vodo": [],
+                "prsno": [
+                    {
+                        "ime_vaje": "-prsno udarci na suhem sede po fazah",
+                        "pozornosti": [
+                            "nastavek stopal, vidne faze, kolena dovolj ozko, po koncu faza drsenja"
+                        ],
+                        "dolzine": [
+                            "10 udarcev, vodeno (z modeliranjem) nato samostojno"
+                        ]
+                    },
+                    {
+                        "ime_vaje": "-prsno udarci leze na trebuhu - klopca oz. opora (modeliranje)",
+                        "pozornosti": [
+                            "nastavek stopal, simetricno, kolena dovolj ozko, drsenje po koncu faze drsenja"
+                        ],
+                        "dolzine": [
+                            "15 udarcev, s stetjem po fazah"
+                        ]
+                    },
+                    {
+                        "ime_vaje": "-odriv od stene v OP + 1 udarec prsno noge)",
+                        "pozornosti": [
+                            "pozicija telesa - glava v vodi, boki visoko, udarec mocan z vidnimi fazami, sledi drsenje"
+                        ],
+                        "dolzine": [
+                            "vsaj 3 ponovitve za vsakega"
+                        ]
+                    }
+                ],
+                "kravl": [],
+                "hrbtno": []
+            }
+        }
+    ],
     "generator": {
         "prilagajanje na vodo": {},
         "prsno": {

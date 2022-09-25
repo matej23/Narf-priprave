@@ -1,5 +1,6 @@
 import bottle
 import model
+import re
 
 PISKOTEK_UPORABNISKO_IME = "uporabnisko_ime"
 SKRIVNOST = "skrivnost"
@@ -71,7 +72,8 @@ def osnovni_zaslon():
 
 @bottle.get("/baza_priprav/")
 def baza_priprav():
-    return bottle.template("baza_priprav.html", napaka=None, x=1)
+    uporabnik = trenutni_uporabnik()
+    return bottle.template("baza_priprav.html", napaka=None, x=1, upo = uporabnik)
 
 @bottle.get("/vaje/")
 def vaje():
@@ -337,7 +339,7 @@ def generiraj():
     poudarek = bottle.request.query.getunicode('poudarek')
 
     priprava = model.Priprava(poudarek, slovar_vaj) 
-    return bottle.template("priprava_prikaz.html", prip = priprava, upo = uporabnik)
+    return bottle.template("priprava_prikaz.html", prip = priprava, upo = uporabnik, shranjena = False)
 
 @bottle.get("/shrani_pripravo/<poudarek>/<vaje>/")
 def shrani_pripravo(poudarek, vaje):
@@ -348,29 +350,21 @@ def shrani_pripravo(poudarek, vaje):
         slovar_vaj[tehnika.ime] = []
 
     seznam_vaje = []
-    #seznam_vaje_string
-    #    rx = re.compile(r'<a href="/players(?P<url_name>/\w/\w+?\d\d).html">(?P<name>.{1,30})</a></td>.+?'
-    #                r'data-stat="pos" >(?P<position>.*?)</td>.+?'
-    #                r'data-stat="fg_pct" >(?P<fg_pct>.*?)</td>.+?'
-    #                r'data-stat="fg3_pct" >(?P<fg3_pct>.*?)</td>.+?'
-    #                r'data-stat="fg2_pct" >(?P<fg2_pct>.*?)</td>.+?'
-    #                r'data-stat="ft_pct" >(?P<ft_pct>.*?)</td>.+?'
-    #                r'data-stat="trb_per_g" >(?P<rebounds>.*?)</td>.+?'
-    #                r'data-stat="ast_per_g" >(?P<asists>.*?)</td>.+?'
-    #                r'data-stat="pts_per_g" >(?P<points>.*?)</td>',
-    #                re.DOTALL)
-#
-    #all_players = re.findall(rx, page_content)
-    #return all_players
+    
+    rx = re.compile(r'ime:(?P<ime>.*?)pozornost:(?P<pozornost>.*?)dolzina:(?P<dolzina>.*?)&', re.DOTALL)
+    vse_vaje = re.findall(rx, vaje)
+    for vaja_regex in vse_vaje:
+        nova_vaja = model.Vaja(vaja_regex[0], [vaja_regex[1]], [vaja_regex[2]])
+        seznam_vaje.append(nova_vaja)
 
     for vaja in seznam_vaje:
-        for tehnika_z_vajo in uporabnik.tehnike_od_vaje(vaja):
+        for tehnika_z_vajo in uporabnik.tehnike_od_vaje(vaja.ime):
             slovar_vaj[tehnika_z_vajo].append(vaja)
 
     priprava_class = model.Priprava(poudarek, slovar_vaj)
     uporabnik.dodaj_pripravo(priprava_class)
     shrani_stanje(uporabnik)
 
-    return bottle.template("priprava_prikaz.html", prip = priprava_class, upo = uporabnik)
+    return bottle.template("priprava_prikaz.html", prip = priprava_class, upo = uporabnik, shranjena = True)
 
 bottle.run(debug=True, reloader=True)
