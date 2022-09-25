@@ -27,6 +27,14 @@ class Tehnika:
                 iskan_odsek = odsek
         return iskan_odsek
 
+    #def vsi_nivoji_tehnike(self):
+    #    seznam_nivojev_tehnike = []
+    #    
+    #    for odsek in self.odseki_tehnike:
+    #        for nivo in odsek.nivoji:
+    #            seznam_nivojev_tehnike.append(nivo)
+    #    return seznam_nivojev_tehnike
+
     def tehnika_v_slovar(self):
         return {
             "ime_tehnike" : self.ime,
@@ -466,9 +474,9 @@ prilagajanje = Tehnika(
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
 class Priprava:
-    def __init__(self, poudarek, seznam_vaj):
+    def __init__(self, poudarek, slovar_vaj):
         self.poudarek = poudarek
-        self.seznam_vaj = seznam_vaj
+        self.slovar_vaj = slovar_vaj
     #
     #def dodaj_tehniko(self, tehnika):
     #    self.seznam_tehnik.append(tehnika)
@@ -490,20 +498,27 @@ class Priprava:
     #    odsek_class.dodaj_nivo(nivo_ime)
 #
 #
-    def izpisi_pripravo(self):
-        return ""
+#    def izpisi_pripravo(self):
+#        return ""
 
     @staticmethod
     def priprava_iz_slovarja(slovar):
         return Priprava(
             slovar["poudarek"], 
-            [Tehnika.tehnika_iz_slovarja(tehnika) for tehnika in slovar["tehnika_priprava"]]
+            {
+                tehnika : [Vaja.vaja_iz_slovarja(vaja) for vaja in slovar["slovar_vaj"][tehnika]]
+                for tehnika in slovar["slovar_vaj"].keys()
+            }
             )
 
     def priprava_v_slovar(self):
         return {
             "poudarek" : self.poudarek,
-            "tehnika_priprava" : [tehnika_priprava.tehnika_v_slovar() for tehnika_priprava in self.seznam_tehnik]
+            "slovar_vaj" : {
+                tehnika : [
+                    vaja.vaja_v_slovar() for vaja in self.slovar_vaj[tehnika]
+                ] for tehnika in self.slovar_vaj.keys()
+            }
         }
 
 def vse_skrito(seznam_tehnik):
@@ -585,6 +600,18 @@ class Uporabnik:
                 for nivo in odsek.nivoji:
                     seznam_nivojev.append(nivo)
         return seznam_nivojev
+
+    def tehnike_od_vaje(self, vaja_ime):
+        tehnike_z_vajo = []
+        for tehnika in self.seznam_tehnik:
+            for odsek in tehnika.odseki_tehnike:
+                for nivo in odsek.nivoji:
+                    for vaja in nivo.vaje:
+                        if vaja.ime == vaja_ime:
+                            tehnike_z_vajo.append(tehnika.ime)
+                        else:
+                            pass
+        return tehnike_z_vajo
 
     @staticmethod
     def prijava(uporabnisko_ime, geslo_v_cistopisu):

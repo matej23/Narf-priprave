@@ -316,17 +316,33 @@ def generiraj():
     uporabnik = trenutni_uporabnik()
 
     seznam_vaj = []
+
+    slovar_vaj = {}
+    for tehnika in uporabnik.seznam_tehnik:
+        slovar_vaj[tehnika.ime] = []
+
     seznam_nivojev = uporabnik.vsi_nivoji()
 
     for nivo in seznam_nivojev:
         stevilo_nivo = int(bottle.request.query.getunicode(nivo.ime))
         seznam_vaj_iz_nivoja = model.random_vaje_iz_nivoja_odseka_tehnike(nivo, stevilo_nivo)
-      
-        for vaja in seznam_vaj_iz_nivoja:
-            seznam_vaj.append(vaja)
-    poudarek = bottle.request.query.getunicode('poudarek')
     
-    priprava = model.Priprava(poudarek, seznam_vaj)
+        for vaja_nivo in seznam_vaj_iz_nivoja:
+            seznam_vaj.append(vaja_nivo)
+
+    for vaja in seznam_vaj:
+        for tehnika_z_vajo in uporabnik.tehnike_od_vaje(vaja.ime):
+            slovar_vaj[tehnika_z_vajo].append(vaja)
+
+    poudarek = bottle.request.query.getunicode('poudarek')
+
+    priprava = model.Priprava(poudarek, slovar_vaj)
     return bottle.template("priprava_prikaz.html", prip = priprava)
+
+#@bottle.get("/shrani_pripravo/<priprava>/")
+#def shrani_pripravo(priprava):
+#    uporabnik = trenutni_uporabnik()
+#    priprava_class = model.Priprava.priprava_iz_slovarja()
+#    return bottle.template("priprava_prikaz.html", prip = priprava_class, y = 1)
 
 bottle.run(debug=True, reloader=True)
