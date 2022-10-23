@@ -17,7 +17,7 @@
             %for nivo in odsek.nivoji:
                 <ul style="list-style-type:none;"><b style="text-transform:uppercase">{{nivo.ime}}</b>
                 %for vaja in nivo.vaje:
-                    <li>{{vaja.ime}} → pozornost: {{vaja.pozornosti}}</li>
+                    <li>{{vaja.ime}} → pozornost: {{vaja.pozornosti}}  -> dolzine : {{vaja.dolzine}}</li>
                 %end
                 </ul>
             %end
